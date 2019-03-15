@@ -8,5 +8,8 @@
 </head>
 <body>
     <p th:text="#{welcome}">Welcome to here!</p>
+    <p>
+        <span th:text="#{today_label(${#calendars.format(today,'yyyy-MM-dd')})}">Today is 13 May 2019</span>
+    </p>
 </body>
 </html>

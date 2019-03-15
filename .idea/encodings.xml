@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+  <component name="Encoding" addBOMForNewFiles="with NO BOM">
+    <file url="file://$PROJECT_DIR$/spring-cloud-service-restful-example/user-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cloud-service-restful-example/user-web-register" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thymeleaf" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/thymeleaf/src/main/webapp/css" charset="US-ASCII" />
-    <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>
