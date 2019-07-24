@@ -6,15 +6,17 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="spring-cloud-service-restful-example" />
         <module name="thymeleaf" />
         <module name="user-service" />
+        <module name="springboot-job-manager" />
+        <module name="spring-cloud-service-restful-example" />
         <module name="user-web-register" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="examples" target="1.5" />
-      <module name="spring-cloud-service-restful-example" target="1.5" />
+      <module name="examples" target="1.8" />
+      <module name="spring-cloud-service-restful-example" target="1.8" />
+      <module name="springboot-job-manager" target="1.8" />
       <module name="springcloudservicerestful" target="1.5" />
       <module name="thymeleaf" target="1.8" />
       <module name="user-service" target="1.8" />
@@ -23,6 +25,9 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="spring-cloud-service-restful-example" options="-parameters" />
+      <module name="springboot-job-manager" options="-parameters" />
+      <module name="thymeleaf" options="-parameters" />
       <module name="user-service" options="-parameters" />
       <module name="user-web-register" options="-parameters" />
     </option>

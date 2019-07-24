@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/examples.iml" filepath="$PROJECT_DIR$/.idea/examples.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud-service-restful-example/spring-cloud-service-restful-example.iml" filepath="$PROJECT_DIR$/spring-cloud-service-restful-example/spring-cloud-service-restful-example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot-job-manager/springboot-job-manager.iml" filepath="$PROJECT_DIR$/springboot-job-manager/springboot-job-manager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thymeleaf/thymeleaf.iml" filepath="$PROJECT_DIR$/thymeleaf/thymeleaf.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud-service-restful-example/user-service/user-service.iml" filepath="$PROJECT_DIR$/spring-cloud-service-restful-example/user-service/user-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud-service-restful-example/user-web-register/user-web-register.iml" filepath="$PROJECT_DIR$/spring-cloud-service-restful-example/user-web-register/user-web-register.iml" />
+    </modules>
+  </component>
+</project>
