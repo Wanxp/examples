@@ -18,6 +18,9 @@
     <modules>
         <module>thymeleaf</module>
         <module>spring-cloud-service-restful-example</module>
+        <module>algorithm</module>
+        <module>datasource</module>
+        <module>springboot-job-manager</module>
     </modules>
 
 

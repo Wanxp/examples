@@ -1,52 +1,70 @@
 spring:
-    jpa:
-        database-platform: org.hibernate.dialect.MySQL5Dialect
-    datasource:
-        master:
-            driverClassName: com.mysql.jdbc.Driver
-            url: 'jdbc:mysql://127.0.0.1:3306/master?autoReconnect=true'
-            username: 'root'
-            password: '0001'
-            type: com.alibaba.druid.pool.DruidDataSource
-            druid:
-                connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
-                filters: stat,wall,slf4j
-                initialSize: 5
-                maxActive: 20
-                maxWait: 60000
-                minEvictableIdleTimeMillis: 300000
-                minIdle: 5
-                testOnBorrow: false
-                testOnReturn: false
-                testWhileIdle: true
-                asyncInit: true
-                poolPreparedStatements: true
-                timeBetweenEvictionRunsMillis: 60000
-                maxOpenPreparedStatements: 20
-                useGlobalDataSourceStat: true
-                validationQuery: SELECT 1 FROM sys_property
-                dialect: org.hibernate.dialect.MySQL57Dialect
-        slave:
-            driverClassName: com.mysql.jdbc.Driver
-            url: 'jdbc:mysql://127.0.0.1:3306/slave?autoReconnect=true'
-            username: 'root'
-            password: '0001'
-            type: com.alibaba.druid.pool.DruidDataSource
-            druid:
-                connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
-                filters: stat
-                initialSize: 1
-                maxActive: 20
-                maxWait: 60000
-                minEvictableIdleTimeMillis: 300000
-                minIdle: 1
-                testOnBorrow: false
-                testOnReturn: false
-                testWhileIdle: true
-                asyncInit: true
-                poolPreparedStatements: true
-                timeBetweenEvictionRunsMillis: 60000
-                maxOpenPreparedStatements: 20
-                useGlobalDataSourceStat: true
-                validationQuery: SELECT 1 FROM sys_property
-                dialect: org.hibernate.dialect.MySQL57Dialect
+  datasource:
+    druid:
+#            # Spring监控AOP切入点，如x.y.z.service.*,配置多个英文逗号分隔
+#            aop-patterns: 'com.wanxp.datasource.service'
+#            stat-view-servlet:
+#                allow: ''
+#                deny: ''
+#                #是否启用StatViewServlet（监控页面）默认值为false（考虑到安全问题默认并未启动，如需启用建议设置密码或白名单以保障安全）
+#                enabled: true
+#                login-password: ''
+#                login-username: ''
+#                reset-enable:
+#                url-pattern: ''
+#            web-stat-filter:
+#                #是否启用StatFilter默认值false
+#                enabled: true
+#                principal-cookie-name: ''
+#                principal-session-name: ''
+#                profile-enable: ''
+#                session-stat-enable: ''
+#                session-stat-max-count: ''
+#                url-pattern: ''
+      master:
+        driverClassName: com.mysql.jdbc.Driver
+        url: 'jdbc:mysql://127.0.0.1:3306/master?autoReconnect=true'
+        username: 'root'
+        password: '9111'
+        type: com.alibaba.druid.pool.DruidDataSource
+        connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+        filters: stat,wall,slf4j
+        initialSize: 5
+        maxActive: 20
+        maxWait: 60000
+        minEvictableIdleTimeMillis: 300000
+        minIdle: 5
+        testOnBorrow: false
+        testOnReturn: false
+        testWhileIdle: true
+        asyncInit: true
+        poolPreparedStatements: true
+        timeBetweenEvictionRunsMillis: 60000
+        maxOpenPreparedStatements: 20
+        useGlobalDataSourceStat: true
+        validationQuery: SELECT 1 FROM sys_property
+        dialect: org.hibernate.dialect.MySQL57Dialect
+      slave:
+        driverClassName: com.mysql.jdbc.Driver
+        url: 'jdbc:mysql://127.0.0.1:3306/slave?autoReconnect=true'
+        username: 'root'
+        password: '9111'
+        type: com.alibaba.druid.pool.DruidDataSource
+        connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+        filters: stat
+        initialSize: 1
+        maxActive: 20
+        maxWait: 60000
+        minEvictableIdleTimeMillis: 300000
+        minIdle: 1
+        testOnBorrow: false
+        testOnReturn: false
+        testWhileIdle: true
+        asyncInit: true
+        poolPreparedStatements: true
+        timeBetweenEvictionRunsMillis: 60000
+        maxOpenPreparedStatements: 20
+        useGlobalDataSourceStat: true
+        validationQuery: SELECT 1 FROM sys_property
+        dialect: org.hibernate.dialect.MySQL57Dialect
+

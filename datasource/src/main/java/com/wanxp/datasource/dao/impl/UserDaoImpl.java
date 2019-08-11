@@ -22,10 +22,11 @@ public class UserDaoImpl implements UserDao {
      * @param user
      */
     @Override
-    public void addToMaster(User user) {
-        PersistenceHelper.callWithinTransaction(entityManager ->
-                        entityManager.find(User.class, 0)
+    public User addToMaster(User user) {
+        PersistenceHelper.runWithinTransaction(entityManager ->
+                        entityManager.persist(user)
                 , DATA_SOURCE_MASTER);
+        return user;
     }
 
     /**
@@ -33,10 +34,11 @@ public class UserDaoImpl implements UserDao {
      * @param user
      */
     @Override
-    public void addToSlave(User user) {
+    public User addToSlave(User user) {
         PersistenceHelper.runWithinTransaction(entityManager ->
-                        entityManager.find(User.class, 0)
+                        entityManager.persist(user)
                 , DATA_SOURCE_SLAVE);
+        return user;
     }
 
     /**

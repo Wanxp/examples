@@ -28,7 +28,7 @@ public class PersistenceHelper {
         }catch (Throwable e) {
             if (tx != null && tx.isActive()) {
                 tx.rollback();
-                log.error("rall back");
+                log.error("rall back", e);
             }
         }finally {
             entityManager.close();
@@ -47,7 +47,7 @@ public class PersistenceHelper {
         }catch (Throwable e) {
             if (tx != null && tx.isActive()) {
                 tx.rollback();
-                log.error("rall back");
+                log.error("rall back", e);
             }
         }finally {
             entityManager.close();

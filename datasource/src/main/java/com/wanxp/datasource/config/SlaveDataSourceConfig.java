@@ -1,5 +1,6 @@
 package com.wanxp.datasource.config;
 
+import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
@@ -29,10 +30,9 @@ public class SlaveDataSourceConfig {
     private DataSource slaveDataSource;
 
     @Bean(name = "slaveDataSource")
-    @Primary
-    @ConfigurationProperties(prefix = "spring.datasource.slave")
+    @ConfigurationProperties(prefix = "spring.datasource.druid.slave")
     public DataSource slaveDataSource() {
-        return DataSourceBuilder.create().build();
+        return DruidDataSourceBuilder.create().build();
     }
 
     /**
@@ -49,10 +49,9 @@ public class SlaveDataSourceConfig {
 
 
     @Bean(name = "slaveEntityManagerFactoryBean")
-    @Primary
     public LocalContainerEntityManagerFactoryBean slaveEntityManagerFactoryBean(EntityManagerFactoryBuilder builder) {
         return builder.dataSource(slaveDataSource)
-                .packages("com.walltech.parcel.core.model")
+                .packages("com.wanxp.datasource.entity")
                 .persistenceUnit(DATA_SOURCE_SLAVE)
                 .build();
     }
