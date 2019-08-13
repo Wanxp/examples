@@ -25,7 +25,7 @@ spring:
         driverClassName: com.mysql.jdbc.Driver
         url: 'jdbc:mysql://127.0.0.1:3306/master?autoReconnect=true'
         username: 'root'
-        password: '9111'
+        password: '0001'
         type: com.alibaba.druid.pool.DruidDataSource
         connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
         filters: stat,wall,slf4j
@@ -48,7 +48,7 @@ spring:
         driverClassName: com.mysql.jdbc.Driver
         url: 'jdbc:mysql://127.0.0.1:3306/slave?autoReconnect=true'
         username: 'root'
-        password: '9111'
+        password: '0001'
         type: com.alibaba.druid.pool.DruidDataSource
         connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
         filters: stat
