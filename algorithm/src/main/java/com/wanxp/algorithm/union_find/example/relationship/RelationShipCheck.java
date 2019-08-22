@@ -1,9 +1,8 @@
 package com.wanxp.algorithm.union_find.example.relationship;
 
-import com.wanxp.algorithm.union_find.UnionFindSet;
+import com.wanxp.algorithm.union_find.v1.UnionFindSet;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 

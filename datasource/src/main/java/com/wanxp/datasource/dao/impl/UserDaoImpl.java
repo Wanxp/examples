@@ -73,7 +73,7 @@ public class UserDaoImpl implements UserDao {
     public User getMaxIdUserFromMaster() {
         return PersistenceHelper.callWithinTransaction(entityManager -> {
                     List<User> userList = entityManager.createNativeQuery(
-                            "select max(id), `name`, age from user", User.class)
+                            "select max(id) as id, `name`, age from user", User.class)
                             .getResultList();
                     if (userList != null && !userList.isEmpty())
                         return userList.get(0);
@@ -89,7 +89,7 @@ public class UserDaoImpl implements UserDao {
     public User getMaxIdUserFromSlave() {
         return PersistenceHelper.callWithinTransaction(entityManager ->{
                     List<User> userList = entityManager.createNativeQuery(
-                            "select max(id), `name`, age from user", User.class)
+                            "select max(id) as id, `name`, age from user", User.class)
                             .getResultList();
                     if (userList != null && !userList.isEmpty())
                         return userList.get(0);

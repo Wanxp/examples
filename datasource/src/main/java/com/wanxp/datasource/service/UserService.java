@@ -2,8 +2,10 @@ package com.wanxp.datasource.service;
 
 import com.wanxp.datasource.dto.UserDTO;
 import com.wanxp.datasource.entity.User;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserService {
     User addToMaster(User user);
@@ -12,4 +14,13 @@ public interface UserService {
     User getFromSlave(Long id);
     User getMaxIdUserFromMaster();
     User getMaxIdUserFromSlave();
+
+    User slaveFindAndMasterCreate();
+
+
+    @Transactional
+    Map<String, User> transactionalInMaster();
+
+    @Transactional
+    Map<String, User> transactionalInMasterFaield();
 }

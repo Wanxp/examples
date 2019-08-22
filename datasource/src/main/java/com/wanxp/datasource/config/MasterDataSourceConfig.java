@@ -11,6 +11,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Primary;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.jta.JtaTransactionManager;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -54,4 +56,14 @@ public class MasterDataSourceConfig {
                 .persistenceUnit(DATA_SOURCE_MASTER)
                 .build();
     }
+
+    /**
+     * 配置事务管理器
+     */
+    @Bean("masterTransactionManager")
+    @Primary
+    public PlatformTransactionManager masterTransactionManager() {
+        return new JtaTransactionManager();
+    }
+
 }

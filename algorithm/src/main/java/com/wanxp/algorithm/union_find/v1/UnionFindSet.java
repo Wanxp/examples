@@ -1,10 +1,13 @@
-package com.wanxp.algorithm.union_find;
+package com.wanxp.algorithm.union_find.v1;
 
 import java.util.Arrays;
 import java.util.Collection;
 
 /**
  * 查并集，对于单棵树，默认跟节点值最大
+ * 树最大值为root
+ * 自动扩展森林长度
+ * 记录每个元素的高度
  */
 public class UnionFindSet {
     private int[] set;

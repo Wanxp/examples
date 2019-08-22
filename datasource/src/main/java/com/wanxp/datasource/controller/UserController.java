@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @Controller
 @RequestMapping("user")
 public class UserController {
@@ -47,6 +49,18 @@ public class UserController {
     @ResponseBody
     public User getMaxIdUserFromSlave() {
         return userService.getMaxIdUserFromSlave();
+    }
+
+    @PostMapping("slave-find/master-create")
+    @ResponseBody
+    public User slaveFindAndMasterCreate() {
+        return userService.slaveFindAndMasterCreate();
+    }
+
+    @PostMapping("master-find/master-create")
+    @ResponseBody
+    public Map<String, User> transactionalInMaster() {
+        return userService.transactionalInMaster();
     }
 
 }
