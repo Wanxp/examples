@@ -75,7 +75,7 @@ public class UserServiceImpl implements UserService {
         userMap.put("origin", userMaster);
         userMap.put("firstCopy", createUser1);
         userMap.put("lastCopy", createUser2);
-        return userMap;
+        throw new RuntimeException(" throw Exception in Transactional test");
     }
 
     @Transactional

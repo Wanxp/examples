@@ -10,8 +10,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Primary;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.jta.JtaTransactionManager;
 
 import javax.persistence.EntityManagerFactory;
@@ -28,6 +31,7 @@ public class MasterDataSourceConfig {
     @Autowired
     @Qualifier("masterDataSource")
     private DataSource masterDataSource;
+
 
     @Bean(name = "masterDataSource")
     @Primary
@@ -57,13 +61,6 @@ public class MasterDataSourceConfig {
                 .build();
     }
 
-    /**
-     * 配置事务管理器
-     */
-    @Bean("masterTransactionManager")
-    @Primary
-    public PlatformTransactionManager masterTransactionManager() {
-        return new JtaTransactionManager();
-    }
+
 
 }
