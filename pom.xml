@@ -21,6 +21,7 @@
         <module>algorithm</module>
         <module>datasource</module>
         <module>springboot-job-manager</module>
+        <module>spring-mvc-3-demo</module>
     </modules>
 
 
