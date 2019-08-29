@@ -22,6 +22,7 @@
         <module>datasource</module>
         <module>springboot-job-manager</module>
         <module>spring-mvc-3-demo</module>
+        <module>javabase</module>
     </modules>
 
 
