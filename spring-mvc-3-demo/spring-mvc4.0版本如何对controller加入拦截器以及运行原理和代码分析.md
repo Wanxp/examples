@@ -5,6 +5,7 @@
 * srping-webmvc:3.2.3 
 * idea18
 # ControllerAdvice与ExceptionHandler注解的一个使用方式实例
+  在以下案例中将会创建一个使用spring-webmvc框架的java web应用，在该web应用中使用ControllerAdvice进行异常的统一拦截
 * 使用idea创建一个空的maven项目: File -> New -> Project -> Maven ->选择
 org.apache.maven.archetypes:maven-archetype-webapp -> Next(下一步) ->输入groupId
 和articileId
