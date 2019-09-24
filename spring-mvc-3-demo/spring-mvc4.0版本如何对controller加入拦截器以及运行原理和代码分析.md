@@ -238,5 +238,6 @@ enter controller advice handler
 ### spring-mvc默认配置方式
 包含两部分DefaultHandlerExceptionResolver和ResponseEntityExceptionHandler
 默认的异常处理器ResponseEntityExceptionHandler和Resolver:DefaultHandlerExceptionResolver
-#### 
-ModelAttribute:RequestMappingHandlerAdapter
+#### 初始化
+web.xml中的
+
