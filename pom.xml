@@ -24,6 +24,8 @@
         <module>spring-mvc-3-demo</module>
         <module>javabase</module>
         <module>jira-plugin</module>
+        <module>spring-data-book</module>
+        <module>common</module>
     </modules>
 
 
