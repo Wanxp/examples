@@ -26,6 +26,7 @@
         <module>jira-plugin</module>
         <module>spring-data-book</module>
         <module>common</module>
+        <module>postman</module>
     </modules>
 
 
