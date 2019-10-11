@@ -24,8 +24,15 @@ public class ApiController {
 
     @GetMapping
     @ResponseBody
-    public UserDTO add(Integer id) {
-        Object o = redisTemplate.opsForValue().get(id);
+    public UserDTO get(Integer id) {
+        Object o = redisTemplate.opsForValue().get(String.valueOf(id));
         return (UserDTO)o;
+    }
+
+    @PostMapping("form-way")
+    @ResponseBody
+    public Boolean addByForm(@ModelAttribute("form") UserDTO user) {
+        redisTemplate.opsForValue().set(user.getId().toString(), user, 1, TimeUnit.DAYS);
+        return Boolean.TRUE;
     }
 }
