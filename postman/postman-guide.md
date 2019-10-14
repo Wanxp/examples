@@ -19,6 +19,7 @@ Provide a shared context for building and consuming APIs, nad collaborate in rea
 with  built-in version.
 
 
+
 ##### 附录
 ###### [1]:REST  
 [表现层状态转换](https://zh.wikipedia.org/wiki/%E8%A1%A8%E7%8E%B0%E5%B1%82%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2)（英语：Representational State Transfer，缩写：REST）是Roy Thomas Fielding博
@@ -31,4 +32,11 @@ with  built-in version.
 例如 SOAP服务则是以本身所定义的操作集，来访问网络上的资源。
 当前在三种主流的Web服务实现方案中，因为REST模式与复杂的SOAP和XML-RPC相比更加简洁，越来越多的web服务开始采用REST风格设计和实现。例如，Amazon.com提供接近REST风格的Web服务运行图书查询；雅虎提供的Web服务也是REST风格的
 ###### [2]:SOAP    
-
+SOAP（原为Simple Object Access Protocol的首字母缩写，即简单对象访问协议）是交换数据
+的一种协议规范，使用在计算机网络Web服务（web service）中，交换带结构信息。SOAP为了简
+化网页服务器（Web Server）从XML数据库中提取数据时，节省去格式化页面时间，以及不同应用
+程序之间按照HTTP通信协议，遵从XML格式执行资料互换，使其抽象于语言实现、平台和硬件。
+此标准由IBM、Microsoft、UserLand和DevelopMentor在1998年共同提出，并得到IBM，莲花（Lotus）
+，康柏（Compaq）等公司的支持，于2000年提交给万维网联盟（World Wide Web Consortium；W3C）
+，目前SOAP 1.1版是业界共同的标准，属于第二代的XML协定（第一代具主要代表性的技术为XML-RPC
+以及WDDX）
