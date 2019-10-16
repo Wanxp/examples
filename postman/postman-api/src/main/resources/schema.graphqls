@@ -1,0 +1,22 @@
+# 定义查询方法
+type Query {
+  userById(id: ID): User
+}
+
+# 定义User对象的结构
+type User {
+  id: ID
+  name: String
+  age: Int
+  address: Address
+}
+
+# 定义Address对象的结构
+type Address{
+  id: ID
+  country: String
+  city: String
+  street: String
+  number: Int
+}
+
