@@ -82,8 +82,31 @@ x-www-form-urlencoded：只能上传键值对，并且键值对都是间隔分�
 ##### Cookies
 ##### Examples
 ##### Comments
-
-
+### Collection  
+#### Action
+##### Share Collection
+分享给团队成员或者其他Postman用户
+##### Manage Roles
+管理团队成员的编辑或者查看权限
+##### Create a fork
+克隆仓库
+##### Merge changes   
+如果当前的Collection是通过fork的克隆Collection，则通过Merage Change可以将现有的改变合并至原始仓库，
+并且支持冲突解决
+##### Export
+导出Collection所有的信息以json文本形式保存至文档。生成的文档可以通过Postman进行保存。
+##### Monitor Collection
+Postman 提供了公网监控接口健康状态的功能。通过创建监控的定时服务定期调用接口并且通过检测test结果
+生成健康图表。
+但是这种监控Postman提供的服务是有限制的每月1000次的
+##### Mock Collection
+模拟服务。使用Postman模拟服务器，通过编写或者保存的Examples作为副本，返回Response。
+Postman会拿我们保存的Examples返回回来。适合在前端没有服务时使用或者，前端开发快于后端，
+急于模拟请求的情况。能够很好的将前后端分离开。
+##### Publish Docs
+生成API接口说明文档
+可以通过发布Publish动作发布到公网(接口生成文档步骤是私密的，但如果进行后续的Publish建议只对
+公开接口进行)
 
 
 
