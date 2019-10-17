@@ -60,18 +60,36 @@ with  built-in version.
 Headers，可以使用预放置的Headers,以及可以使用BulkEdit的方式
 ##### Body
 ###### 类型
-* none:无Body体
-* form-data:http支持的原生复杂form表单，会将表单的数据处理为一条消息
+* **none**:无Body体
+* **form-data**:http支持的原生复杂form表单，会将表单的数据处理为一条消息
 ，以标签为单元，用分隔符分开。既可以上传键值对，也可以上传文件  
-* x-www-form-ulencoded：浏览器的原生 <form> 表单，如果不设置 enctype 
+* **x-www-form-ulencoded**：浏览器的原生 <form> 表单，如果不设置 enctype 
 属性，那么最终就会以 application/x-www-form-urlencoded 方式提交数据，
 提交的数据按照 key1=val1&key2=val2 的方式进行编码，key 和 val 都进行了 URL 转码
-* raw:除form表单提交方式的其他方式，如json,xml等，需要在Headers指定Header的Content-Type
+* **raw**:除form表单提交方式的其他方式，如json,xml等，需要在Headers指定Header的Content-Type
 具体数据格式类型是服务器规定的可识别类型.
-* binary: 相当于Content-Type:application/octet-stream, 只可以上传二进制数据
+* **binary**: 相当于Content-Type:application/octet-stream, 只可以上传二进制数据
 ，通常用来上传文件，由于没有键值，所以，一次只能上传一个文件 
-* GraphQL:  
+* **GraphQL**:支持graphql的请求规范，动态获取指定的数据内容 
+如，请求如下内容
+```GraphQL
+{
+    userById(id:4) {
+        id
+        name
+        age
+        address {
+            id
+            city
+            street
+        }
+    }
+}
+``` 
+获取内容如下
+```json
 
+```
 * multipart/form-data与x-www-form-urlencoded区别  
 multipart/form-data：既可以上传文件等二进制数据，也可以上传表单键值对，只是最后会
 转化为一条信息；
