@@ -18,15 +18,15 @@ thies at scheduled intervals.
 Provide a shared context for building and consuming APIs, nad collaborate in real-time
 with  built-in version.
 ## 界面介绍
-### 主界面
+### 主界面  
 ![postman-window](resource/postman-window-view.png)
 ## 用法
 ### 基本:API请求
 * method:POST,Content-Type:json
 1. 填写requestUrl和requestMethod
-2. 设定请求头Content-Type为json形式
+2. 设定请求头Content-Type为json形式  
 ![postman-base-json-request-header.png](resource/postman-base-json-request-header.png)
-3. 填写post的body:选择raw,并填写json内容
+3. 填写post的body:选择raw,并填写json内容  
 ![postman-base-json-request](resource/postman-base-json-request.png)
 ### 变量
 #### 变量的功能
@@ -38,14 +38,14 @@ with  built-in version.
 * Environment：环境变量，自定义后可自由选择，作用域小于Collection
 * Data：比如Runner运行过程中参数化选择的.csv文件
 * Local：前置数据处理与后置数据断言写的js脚本中自定义的变量，作用域最小  
-如下.
+如下.  
 ![postman-var-location](resource/postman-var-location.png)
 
 #### 变量的使用
 如 配置环境变量
-1. 配置  
+1. 配置    
 ![postman-var-config](resource/postman-var-config.png)
-2. 使用，采用{{var}}的形式调用
+2. 使用，采用{{var}}的形式调用    
 ![var-user](resource/postman-var-config-use.png)
 #### Request
 ##### Method
