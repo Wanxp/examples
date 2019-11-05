@@ -11,6 +11,11 @@
     <title>${title}</title>
   </head>
   <body>
+    <form  method="post">
+
+      <input type="text" name="">
+        <input type="button" onsubmit="this">
+    </form>
   ${body}
   </body>
 </html>

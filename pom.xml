@@ -27,6 +27,7 @@
         <module>spring-data-book</module>
         <module>common</module>
         <module>postman</module>
+        <module>spring-tx-3-demo</module>
     </modules>
 
 

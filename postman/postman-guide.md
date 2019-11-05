@@ -96,6 +96,7 @@ multipart/form-data：既可以上传文件等二进制数据，也可以上传�
 x-www-form-urlencoded：只能上传键值对，并且键值对都是间隔分开的
 ##### Pre-request Script
 ##### Tests
+
 ##### Settings
 ##### Cookies
 ##### Examples
