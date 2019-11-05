@@ -21,13 +21,14 @@
         <module>algorithm</module>
         <module>datasource</module>
         <module>springboot-job-manager</module>
-        <module>spring-mvc-3-demo</module>
+        <module>spring-mvc-3</module>
         <module>javabase</module>
         <module>jira-plugin</module>
         <module>spring-data-book</module>
         <module>common</module>
         <module>postman</module>
-        <module>spring-tx-3-demo</module>
+        <module>spring-hibernate-4</module>
+        <module>spring-tx-3</module>
     </modules>
 
 
