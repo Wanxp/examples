@@ -71,4 +71,8 @@ public class PersistenceHelper {
         }
         return emf;
     }
+
+    public static void putEntityManagerFactory(String unitName, EntityManagerFactory entityManagerFactory) {
+        factoryMap.put(unitName, entityManagerFactory);
+    }
 }
