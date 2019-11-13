@@ -15,7 +15,7 @@ public class UserService {
     public void insert(User user) {
         userDao.insert(user);
         System.out.println("insert success :" + user.getId());
-        throw new RuntimeException("throw error in the end");
+//        throw new RuntimeException("throw error in the end");
     }
 
     public User get(Long id) {

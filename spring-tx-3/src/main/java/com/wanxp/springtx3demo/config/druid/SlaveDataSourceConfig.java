@@ -1,25 +1,12 @@
 package com.wanxp.springtx3demo.config.druid;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.DependsOn;
-import org.springframework.context.annotation.Primary;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-import org.springframework.orm.hibernate4.HibernateTransactionManager;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.sql.DataSource;
-import javax.transaction.TransactionManager;
-import java.util.HashMap;
-import java.util.Map;
 
 import static com.wanxp.springtx3demo.persistence.PersistenceHelper.SLAVE;
 
@@ -44,8 +31,8 @@ public class SlaveDataSourceConfig {
      * 配置事物管理器
      */
     @Bean(name = "slaveDataBaseTransactionManager")
-    public PlatformTransactionManager slaveDataBaseTransactionManager(){
-        return new DataSourceTransactionManager();
+    public PlatformTransactionManager slaveDataBaseTransactionManager(EntityManagerFactory slaveEntityManagerFactory){
+        return new JpaTransactionManager(slaveEntityManagerFactory);
     }
 
 

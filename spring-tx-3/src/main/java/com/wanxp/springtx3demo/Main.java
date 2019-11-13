@@ -36,6 +36,6 @@ public class Main {
         }catch (Exception e) {
             System.out.println(e);
         }
-        System.out.println("Transaction : " + userService.get(user.getId()) == null);
+        System.out.println("Transaction : " + (userService.get(user.getId()) == null));
     }
 }
