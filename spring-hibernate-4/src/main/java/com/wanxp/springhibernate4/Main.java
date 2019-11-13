@@ -1,7 +1,7 @@
-package com.wanxp.springtx3demo;
+package com.wanxp.springhibernate4;
 
 
-import com.wanxp.springtx3demo.persistence.UserDao;
+import com.wanxp.springhibernate4.persistence.UserDao;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;

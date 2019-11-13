@@ -1,6 +1,5 @@
 package com.wanxp.springtx3demo.config.druid;
 
-import com.walltech.parcel.dao.constant.DataSouceConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;

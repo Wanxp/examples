@@ -1,6 +1,6 @@
-package com.wanxp.springtx3demo.persistence;
+package com.wanxp.springhibernate4.persistence;
 
-import com.wanxp.springtx3demo.User;
+import com.wanxp.springhibernate4.User;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;

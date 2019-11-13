@@ -1,4 +1,4 @@
-package com.wanxp.springtx3demo.persistence;
+package com.wanxp.springhibernate4.persistence;
 
 import javax.persistence.EntityManager;
 
