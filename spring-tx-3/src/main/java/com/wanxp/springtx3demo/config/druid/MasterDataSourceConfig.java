@@ -8,8 +8,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import static com.wanxp.springtx3demo.persistence.PersistenceHelper.MASTER;
-import static com.wanxp.springtx3demo.persistence.PersistenceHelper.SLAVE;
+import static com.wanxp.springtx3demo.persistence.PersistenceHelper.*;
 
 
 /**
@@ -24,7 +23,7 @@ public class MasterDataSourceConfig {
      * mybatis的sqlSession.
      * @return
      */
-    @Bean(name = "masterEntityManagerFactory")
+    @Bean(name = MASTER_EMF)
     public EntityManagerFactory masterEntityManagerFactory(){
         return Persistence.createEntityManagerFactory(MASTER);
     }

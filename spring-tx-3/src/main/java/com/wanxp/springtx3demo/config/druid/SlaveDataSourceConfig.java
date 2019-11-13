@@ -8,7 +8,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import static com.wanxp.springtx3demo.persistence.PersistenceHelper.SLAVE;
+import static com.wanxp.springtx3demo.persistence.PersistenceHelper.*;
 
 /**
  *  <a href=https://my.oschina.net/wuyiyi/blog/1604716>spring boot +spring data jpa +druid 多数据源配置</a>
@@ -22,7 +22,7 @@ public class SlaveDataSourceConfig {
      * mybatis的sqlSession.
      * @return
      */
-    @Bean(name = "slaveEntityManagerFactory")
+    @Bean(name = SLAVE_EMF)
     public EntityManagerFactory slaveEntityManagerFactory(){
         return Persistence.createEntityManagerFactory(SLAVE);
     }

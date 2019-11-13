@@ -11,8 +11,8 @@ public class PersistenceHelper {
 
     public static final String MASTER = "master";
     public static final String SLAVE = "slave";
-    public static final String MASTER_ENTITYMANAGER_FACTORY = "masterEntityManagerFactory";
-    public static final String SLAVE_ENTITYMANAGER_FACTORY = "slaveEntityManagerFactory";
+    public static final String MASTER_EMF = "masterEntityManagerFactory";
+    public static final String SLAVE_EMF = "slaveEntityManagerFactory";
 
     /**
      * 缓存EntityManagerFactory

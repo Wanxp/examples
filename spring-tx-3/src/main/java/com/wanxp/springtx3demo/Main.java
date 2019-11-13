@@ -1,8 +1,9 @@
 package com.wanxp.springtx3demo;
 
 
-import com.wanxp.springtx3demo.persistence.UserDao;
 import com.wanxp.springtx3demo.persistence.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
@@ -12,11 +13,14 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ComponentScan
 public class Main {
+
+    private static Logger log = LoggerFactory.getLogger(Main.class);
+
     public static void main(String[] args) {
-        System.out.println("application start.");
+        log.debug("application start.");
         ApplicationContext context = new AnnotationConfigApplicationContext(Main.class);
         testPersistenceHelper(context);
-        System.out.println("application stop.");
+        log.debug("application stop.");
     }
 
     private static void testPersistenceHelper(ApplicationContext context) {
@@ -34,8 +38,8 @@ public class Main {
         try {
             userService.insert(user);
         }catch (Exception e) {
-            System.out.println(e);
+            log.error("delete error",e);
         }
-        System.out.println("Transaction : " + (userService.get(user.getId()) == null));
+        log.debug("Transaction : " + (userService.get(user.getId()) == null));
     }
 }
