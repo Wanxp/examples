@@ -8,22 +8,18 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.persistence.EntityManagerFactory;
 
-import static com.wanxp.springtx3demo.persistence.PersistenceHelper.MASTER;
-import static com.wanxp.springtx3demo.persistence.PersistenceHelper.SLAVE;
+import static com.wanxp.springtx3demo.persistence.PersistenceHelper.*;
 
 
 @Component
 public class DaoStaticContextInitializer {
 
 
-    @Resource(name = "masterEntityManagerFactory")
+    @Resource(name = MASTER_EMF)
     private EntityManagerFactory masterEntityManagerFactory;
 
-    @Resource(name = "slaveEntityManagerFactory")
+    @Resource(name = SLAVE_EMF)
     private EntityManagerFactory slaveEntityManagerFactory;
-
-    @Value("${spring.application.site.id}")
-    private String siteId;
 
     @PostConstruct
     public void init() {
