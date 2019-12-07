@@ -18,6 +18,7 @@
         <java.version>1.8</java.version>
         <atlassian.product.version>7.10.1</atlassian.product.version>
         <atlassian.connect.version>2.0.3-SNAPSHOT</atlassian.connect.version>
+        <jira.version>6.0-rotp3</jira.version>
     </properties>
 
     <dependencies>
@@ -68,8 +69,23 @@
         <dependency>
             <groupId>com.atlassian.jira</groupId>
             <artifactId>jira-rest-java-client-core</artifactId>
-            <version>5.1.1-e0dd194</version>
+            <version>5.1.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/io.atlassian.fugue/fugue -->
+        <dependency>
+            <groupId>io.atlassian.fugue</groupId>
+            <artifactId>fugue</artifactId>
+            <version>4.7.2</version>
+            <scope>provided</scope>
+        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.atlassian.jira</groupId>-->
+            <!--<artifactId>atlassian-jira</artifactId>-->
+            <!--<version>${jira.version}</version>-->
+            <!--<scope>provided</scope>-->
+        <!--</dependency>-->
+
+
 
 
         <dependency>

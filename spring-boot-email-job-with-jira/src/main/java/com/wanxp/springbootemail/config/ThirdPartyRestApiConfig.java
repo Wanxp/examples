@@ -52,7 +52,7 @@ public class ThirdPartyRestApiConfig {
     @Bean
     public JiraRestClient jiraRestClient(JiraRestClientFactory jiraRestClientFactory) {
         return jiraRestClientFactory.createWithBasicHttpAuthentication(URI.create(
-                jiraProperties.getHost()),
+                jiraProperties.getUri()),
                 jiraProperties.getUsername(),
                 jiraProperties.getPassword());
     }

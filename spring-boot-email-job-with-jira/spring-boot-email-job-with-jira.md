@@ -56,4 +56,6 @@ public class ThirdPartyRestApiConfig {
 * [Spring Boot 使用JXLS导出Excel](https://www.jianshu.com/p/07c17cd80f57)
 * [Spring boot集成jxls实现导出excel功能](https://blog.csdn.net/syilt/article/details/91473055)
 * [Getting Started Guide](http://jxls.sourceforge.net/getting_started.html)
-
+## job
+### schedule
+* [基于Spring Boot 实现定时任务](https://www.tianmaying.com/tutorial/spring-scheduling-task)

@@ -1,13 +1,12 @@
-package com.wanxp.springbootemail.export;
+package com.wanxp.springbootemail.util;
 
 import com.wanxp.springbootemail.exception.TemplateNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.jxls.common.Context;
 import org.jxls.util.JxlsHelper;
+import org.springframework.util.ResourceUtils;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.util.Map;
 
 @Slf4j
@@ -15,7 +14,15 @@ public class JxlsTemplate {
     /**
      * 模板路径
      */
-    private static final String TEMPLATE_DIR = "/template";
+    private static String TEMPLATE_DIR;
+
+    static {
+        try {
+            TEMPLATE_DIR = ResourceUtils.getURL("classpath:").getPath() + "template/";
+        } catch (FileNotFoundException e) {
+            log.error("jxlsTemplate template error");
+        }
+    };
 
     /**
      * 使用JxlsTemplate.class.getResourceAsStream load 模板
@@ -39,7 +46,7 @@ public class JxlsTemplate {
      * @throws IOException
      */
     public static void processTemplate(Class resourceBaseClass, String template, OutputStream out, Map<String, ?> params) throws IOException {
-        InputStream in = resourceBaseClass.getResourceAsStream(TEMPLATE_DIR + template);
+        InputStream in = new FileInputStream(new File(TEMPLATE_DIR + template));
         if (null == in) {
             log.error("can't find excel template by path:" + TEMPLATE_DIR + template);
             throw new TemplateNotFoundException("找不到excel模板！,位置:" + TEMPLATE_DIR + template);
