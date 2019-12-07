@@ -17,6 +17,7 @@
     <properties>
         <java.version>1.8</java.version>
         <atlassian.product.version>7.10.1</atlassian.product.version>
+        <atlassian.connect.version>2.0.3-SNAPSHOT</atlassian.connect.version>
     </properties>
 
     <dependencies>
@@ -36,10 +37,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.atlassian.connect</groupId>
-            <artifactId>atlassian-connect-spring-boot-starter</artifactId>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.atlassian.connect</groupId>-->
+            <!--<artifactId>atlassian-connect-spring-boot-starter</artifactId>-->
+            <!--<version>${atlassian.connect.version}</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.jxls</groupId>
             <artifactId>jxls</artifactId>
@@ -62,11 +64,13 @@
 <!--            <version>${atlassian.product.version}</version>-->
 <!--            <scope>provided</scope>-->
 <!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>com.atlassian.jira</groupId>-->
-<!--            <artifactId>jira-rest-java-client-core</artifactId>-->
-<!--            <version></version>-->
-<!--        </dependency>-->
+        <!-- https://mvnrepository.com/artifact/com.atlassian.jira/jira-rest-java-client-core -->
+        <dependency>
+            <groupId>com.atlassian.jira</groupId>
+            <artifactId>jira-rest-java-client-core</artifactId>
+            <version>5.1.1-e0dd194</version>
+        </dependency>
+
 
         <dependency>
             <groupId>com.wanxp</groupId>
