@@ -59,3 +59,5 @@ public class ThirdPartyRestApiConfig {
 ## job
 ### schedule
 * [基于Spring Boot 实现定时任务](https://www.tianmaying.com/tutorial/spring-scheduling-task)
+### job-monitor
+* [spring-boot-in-action](git@github.com:qq1311256696/Spring-Boot-in-Action.git)
