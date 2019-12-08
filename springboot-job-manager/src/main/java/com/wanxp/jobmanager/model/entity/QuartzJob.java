@@ -4,10 +4,12 @@ import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Table;
 import java.util.Date;
 
 @Data
 @Entity
+@Table
 public class QuartzJob extends AbstractEntity {
 
     private static final long serialVersionUID = 607415834012939222L;
