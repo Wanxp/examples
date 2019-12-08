@@ -33,7 +33,7 @@ public class SendWorkStatusExcelTask {
     @Autowired
     private JavaMailSender javaMailSender;
 
-//    @Scheduled(fixedDelay = 10000)
+    @Scheduled(fixedDelay = 10000)
     public void sendWorkStatusExcelTask() {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         try {

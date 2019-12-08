@@ -5,8 +5,10 @@ import com.atlassian.jira.rest.client.api.domain.SearchResult;
 import com.atlassian.jira.rest.client.api.domain.User;
 import com.wanxp.springbootemail.job.SendWorkStatusExcelTask;
 import com.wanxp.springbootemail.model.WeekJobDetail;
+import com.wanxp.springbootemail.util.JxlsTemplate;
 import io.atlassian.util.concurrent.Promise;
 import lombok.extern.slf4j.Slf4j;
+import org.joda.time.DateTime;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,9 +18,13 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 
 import javax.mail.internet.MimeMessage;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 @SpringBootTest
@@ -81,14 +87,29 @@ class SpringBootEmailApplicationTests {
     }
 
     @Test
-    public void createExcel() {
-        List<WeekJobDetail> jobDetailList = new ArrayList<>();
+    public void createExcel() throws IOException {
+        List<WeekJobDetail> currentJobDetailList = new ArrayList<>();
         for (int i = 0;i< 10 ;i++) {
             WeekJobDetail weekJobDetail = new WeekJobDetail();
             weekJobDetail.setId("ETOWER-111");
             weekJobDetail.setTitle("123213123");
-            jobDetailList.add(weekJobDetail);
+            currentJobDetailList.add(weekJobDetail);
         }
+        List<WeekJobDetail> nextJobDetailList = new ArrayList<>();
+        for (int i = 0;i< 10 ;i++) {
+            WeekJobDetail weekJobDetail = new WeekJobDetail();
+            weekJobDetail.setId("ETOWER-111");
+            weekJobDetail.setTitle("123213123");
+            nextJobDetailList.add(weekJobDetail);
+        }
+        Map<String, Object> data = new HashMap<>();
+        data.put("currentWeekJob", currentJobDetailList);
+        data.put("nextWeekJob", nextJobDetailList);
+        data.put("dateStart", DateTime.now().toString("yyyy-MM-dd"));
+        data.put("dateEnd", DateTime.now().plus(-4).toString("yyyy-MM-dd"));
+        JxlsTemplate.processTemplate("job_weekly_template.xlsx",
+                new FileOutputStream(new File("/home/hugh/桌面/m.xlsx")), data);
+
 
     }
 

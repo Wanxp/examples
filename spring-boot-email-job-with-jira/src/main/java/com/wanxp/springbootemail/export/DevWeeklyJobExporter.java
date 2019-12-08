@@ -4,6 +4,7 @@ import com.atlassian.jira.rest.client.api.domain.Issue;
 import com.wanxp.springbootemail.model.WeekJobDetail;
 import com.wanxp.springbootemail.service.IssueService;
 import com.wanxp.springbootemail.util.JxlsTemplate;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
@@ -32,6 +33,8 @@ public class DevWeeklyJobExporter {
         Map<String, Object> data = new HashMap<>();
         data.put("currentWeekJobs", currentWeekJobDetails);
         data.put("nextWeekJobs", nextWeekJobDetails);
+        data.put("dateStart", DateTime.now().toString("yyyy-MM-dd"));
+        data.put("dateEnd", DateTime.now().plus(-4).toString("yyyy-MM-dd"));
         JxlsTemplate.processTemplate(TEMPLATE_FILE_NAME, outputStream, data);
     }
 
