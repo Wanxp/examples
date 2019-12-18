@@ -19,7 +19,7 @@ public class TransactionManagerConfig {
      * 配置事务管理器
      */
     @Bean("masterTransactionManager")
-    public PlatformTransactionManager masterTransactionManager( ) {
+    public PlatformTransactionManager masterTransactionManager() {
         JpaTransactionManager jpaTransactionManager =
                 new JpaTransactionManager(masterEntityManagerFactory);
         return jpaTransactionManager;

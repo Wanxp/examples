@@ -51,7 +51,7 @@ public class DatasourceApplicationTests {
         User maxIdUserMaster = userDao.getMaxIdUserFromMaster();
         log.info("Master数据库 查询结果为:" + maxIdUserMaster);
         log.info("############################测试 主数据库(数据库Master) 新增 ############################");
-        Long nextIdMaster = maxIdUserMaster == null ? 0 : maxIdUserMaster.getId()+1;
+        Long nextIdMaster = maxIdUserMaster == null ? 0 : maxIdUserMaster.getId() + 1;
         User userMaster = new User();
         userMaster.setId(nextIdMaster);
         userMaster.setName("Master数据库用户" + nextIdMaster);
@@ -65,8 +65,8 @@ public class DatasourceApplicationTests {
         User maxIdUserSlave = userDao.getMaxIdUserFromMaster();
         log.info("Master数据库 查询结果为:" + maxIdUserSlave);
         log.info("############################测试 主数据库(数据库Slave) 新增 ############################");
-        Long nextIdSlave = maxIdUserSlave == null ? 0 : maxIdUserSlave.getId()+1;
-        User userSlave= new User();
+        Long nextIdSlave = maxIdUserSlave == null ? 0 : maxIdUserSlave.getId() + 1;
+        User userSlave = new User();
         userSlave.setId(nextIdSlave);
         userSlave.setName("Master数据库用户" + nextIdSlave);
         userSlave.setAge(random.nextInt(100));
@@ -80,7 +80,6 @@ public class DatasourceApplicationTests {
      * 1. 首先会从master 中读取最大的Id的用户，然后复制两份信息写入master数据库<br>
      * 2. 其次会从master 中读取最大的Id的用户，然后复制两份信息写入master数据库,在写入第二份用户后抛出异常，第二份用户是否会成功添加到数据库<br>
      * 如果事务正常就会导致第二次的复制写入数据库会回滚，则测试便会通过:即最新的用户id会等于事务开启前的id
-     *
      */
     @Test
     public void testUserService() {
@@ -90,7 +89,7 @@ public class DatasourceApplicationTests {
         log.info("############################测试 读取主数据库(数据库 Master) 写入 主数据库(数据库 Master) 再次写入住数据库 ############################");
         try {
             Map<String, User> userMap = userService.transactionalInMaster();
-        }catch (Exception e) {
+        } catch (Exception e) {
 
         }
         User userMaxId = userService.getMaxIdUserFromMaster();
@@ -98,7 +97,7 @@ public class DatasourceApplicationTests {
         log.info("############################测试 读取主数据库(数据库 Master) 写入 主数据库(数据库 Master) 再次写入住数据库:失败回滚 ############################");
         try {
             Map<String, User> userMapFailed = userService.transactionalInMasterFaield();
-        }catch (RuntimeException e) {
+        } catch (RuntimeException e) {
         }
         userMaxId = userService.getMaxIdUserFromMaster();
         Assert.assertEquals(userMaxId.getId(), userM.getId());

@@ -9,10 +9,15 @@ import java.util.Map;
 
 public interface UserService {
     User addToMaster(User user);
+
     User addToSlave(User user);
+
     User getFromMaster(Long id);
+
     User getFromSlave(Long id);
+
     User getMaxIdUserFromMaster();
+
     User getMaxIdUserFromSlave();
 
     User slaveFindAndMasterCreate();

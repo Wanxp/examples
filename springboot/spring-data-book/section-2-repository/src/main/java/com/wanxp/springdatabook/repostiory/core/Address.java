@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 
 @Entity
 @Data
-public class Address extends AbstractEntity{
+public class Address extends AbstractEntity {
     private String street;
     private String contry;
     private String city;

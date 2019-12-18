@@ -16,10 +16,11 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+
 import static com.wanxp.datasource.constant.DataSourceConstant.DATA_SOURCE_MASTER;
 
 /**
- *  <a href=https://my.oschina.net/wuyiyi/blog/1604716>spring boot +spring data jpa +druid 多数据源配置</a>
+ * <a href=https://my.oschina.net/wuyiyi/blog/1604716>spring boot +spring data jpa +druid 多数据源配置</a>
  */
 @Configuration
 @DependsOn("entityManagerFactoryBuilder")
@@ -40,11 +41,12 @@ public class MasterDataSourceConfig {
      * EntityManagerFactory类似于Hibernate的SessionFactory,mybatis的SqlSessionFactory
      * 总之,在执行操作之前,我们总要获取一个EntityManager,这就类似于Hibernate的Session,
      * mybatis的sqlSession.
+     *
      * @param builder
      * @return
      */
     @Bean(name = "masterEntityManagerFactory")
-    public EntityManagerFactory masterEntityManagerFactory(EntityManagerFactoryBuilder builder){
+    public EntityManagerFactory masterEntityManagerFactory(EntityManagerFactoryBuilder builder) {
         return this.masterEntityManagerFactoryBean(builder).getObject();
     }
 

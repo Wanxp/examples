@@ -19,6 +19,7 @@ import static com.wanxp.datasource.constant.DataSourceConstant.DATA_SOURCE_SLAVE
 public class UserDaoImpl implements UserDao {
     /**
      * 添加到数据库Master
+     *
      * @param user
      */
     @Override
@@ -31,6 +32,7 @@ public class UserDaoImpl implements UserDao {
 
     /**
      * 添加到数据库Slave
+     *
      * @param user
      */
     @Override
@@ -43,18 +45,20 @@ public class UserDaoImpl implements UserDao {
 
     /**
      * 添加到数据库Slave
+     *
      * @param id
      * @return 用户信息
      */
     @Override
     public User getFromMaster(Long id) {
         return PersistenceHelper.callWithinTransaction(entityManager ->
-            entityManager.find(User.class, id)
-        , DATA_SOURCE_MASTER);
+                        entityManager.find(User.class, id)
+                , DATA_SOURCE_MASTER);
     }
 
     /**
      * 添加到数据库Slave
+     *
      * @param id
      * @return 用户信息
      */
@@ -67,33 +71,35 @@ public class UserDaoImpl implements UserDao {
 
     /**
      * 添加到数据库Slave
+     *
      * @return 用户信息
      */
     @Override
     public User getMaxIdUserFromMaster() {
         return PersistenceHelper.callWithinTransaction(entityManager -> {
-                    List<User> userList = entityManager.createNativeQuery(
-                            "select max(id) as id, `name`, age from user", User.class)
-                            .getResultList();
-                    if (userList != null && !userList.isEmpty())
-                        return userList.get(0);
-                    return null;
-                }, DATA_SOURCE_MASTER);
+            List<User> userList = entityManager.createNativeQuery(
+                    "select max(id) as id, `name`, age from user", User.class)
+                    .getResultList();
+            if (userList != null && !userList.isEmpty())
+                return userList.get(0);
+            return null;
+        }, DATA_SOURCE_MASTER);
     }
 
     /**
      * 添加到数据库Slave
+     *
      * @return 用户信息
      */
     @Override
     public User getMaxIdUserFromSlave() {
-        return PersistenceHelper.callWithinTransaction(entityManager ->{
-                    List<User> userList = entityManager.createNativeQuery(
-                            "select max(id) as id, `name`, age from user", User.class)
-                            .getResultList();
-                    if (userList != null && !userList.isEmpty())
-                        return userList.get(0);
-                    return null;
-                }, DATA_SOURCE_SLAVE);
+        return PersistenceHelper.callWithinTransaction(entityManager -> {
+            List<User> userList = entityManager.createNativeQuery(
+                    "select max(id) as id, `name`, age from user", User.class)
+                    .getResultList();
+            if (userList != null && !userList.isEmpty())
+                return userList.get(0);
+            return null;
+        }, DATA_SOURCE_SLAVE);
     }
 }

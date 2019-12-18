@@ -25,12 +25,12 @@ public class PersistenceHelper {
             tx.begin();
             runnable.run(entityManager);
             tx.commit();
-        }catch (Throwable e) {
+        } catch (Throwable e) {
             if (tx != null && tx.isActive()) {
                 tx.rollback();
                 log.error("rall back", e);
             }
-        }finally {
+        } finally {
             entityManager.close();
         }
     }
@@ -44,12 +44,12 @@ public class PersistenceHelper {
             tx.begin();
             result = callable.call(entityManager);
             tx.commit();
-        }catch (Throwable e) {
+        } catch (Throwable e) {
             if (tx != null && tx.isActive()) {
                 tx.rollback();
                 log.error("rall back", e);
             }
-        }finally {
+        } finally {
             entityManager.close();
         }
         return result;

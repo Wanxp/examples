@@ -15,7 +15,7 @@ import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService {
-    
+
     @Autowired
     private UserDao userDao;
 
@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
     public User slaveFindAndMasterCreate() {
         User userSlave = userDao.getMaxIdUserFromSlave();
         User createUser = new User();
-        createUser.setName("originSlaveToMaster,originId:"+userSlave.getId());
+        createUser.setName("originSlaveToMaster,originId:" + userSlave.getId());
         createUser.setAge(11);
         userDao.addToMaster(createUser);
         return createUser;
@@ -64,11 +64,11 @@ public class UserServiceImpl implements UserService {
     public Map<String, User> transactionalInMaster() {
         User userMaster = userDao.getMaxIdUserFromSlave();
         User createUser1 = new User();
-        createUser1.setName("transactional:OriginMaster,originId:"+userMaster.getId());
+        createUser1.setName("transactional:OriginMaster,originId:" + userMaster.getId());
         createUser1.setAge(11);
         userDao.addToMaster(createUser1);
         User createUser2 = new User();
-        createUser2.setName("transactional:OriginMaster,originId:"+userMaster.getId());
+        createUser2.setName("transactional:OriginMaster,originId:" + userMaster.getId());
         createUser2.setAge(11);
         userDao.addToMaster(createUser2);
         Map<String, User> userMap = new HashMap<>();
@@ -83,11 +83,11 @@ public class UserServiceImpl implements UserService {
     public Map<String, User> transactionalInMasterFaield() {
         User userMaster = userDao.getMaxIdUserFromSlave();
         User createUser1 = new User();
-        createUser1.setName("transactional:OriginMaster,originId:"+userMaster.getId());
+        createUser1.setName("transactional:OriginMaster,originId:" + userMaster.getId());
         createUser1.setAge(11);
         userDao.addToMaster(createUser1);
         User createUser2 = new User();
-        createUser2.setName("transactional:OriginMaster,originId:"+userMaster.getId());
+        createUser2.setName("transactional:OriginMaster,originId:" + userMaster.getId());
         createUser2.setAge(11);
         userDao.addToMaster(createUser2);
         throw new RuntimeException(" throw Exception in Transactional test");
