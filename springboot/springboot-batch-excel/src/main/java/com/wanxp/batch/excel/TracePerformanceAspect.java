@@ -1,19 +1,16 @@
 package com.wanxp.batch.excel;
 
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
+@Slf4j
 public class TracePerformanceAspect {
-
-    private final Logger logger = LoggerFactory.getLogger(TracePerformanceAspect.class);
-
     @Around ("execution(* com.wanxp.batch.excel..*.*(..)))")
     public Object logTracePerformanceAspect(ProceedingJoinPoint joinPoint) throws Throwable {
 
@@ -29,7 +26,7 @@ public class TracePerformanceAspect {
         long end = System.currentTimeMillis();
 
         //Log method execution time
-        logger.info("Execution time of " + className + "." + methodName + " :: " + (end - start) + " ms");
+        log.info("Execution time of " + className + "." + methodName + " :: " + (end - start) + " ms");
 
         return result;
     }
