@@ -1,6 +1,8 @@
-package com.wanxp.batchtest.entity.primary;
+package com.wanxp.batchtest.model.entity.primary;
 
+import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.Tolerate;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -11,7 +13,10 @@ import java.util.List;
 
 @Entity
 @Data
+@Builder
 public class ChannelRule {
+    private BigDecimal heightMax;
+
     @Id
     private Integer id;
     private String serviceName;
@@ -22,24 +27,40 @@ public class ChannelRule {
     private BigDecimal lengthMax;
     private BigDecimal lengthMin;
     private String lengthUnit;
-    private BigDecimal highMax;
-    private BigDecimal highMin;
-    private String highUnit;
+    private BigDecimal heightMin;
+    private String heightUnit;
+    /**
+     * length * width * height
+     */
+    private BigDecimal volumeMin;
     private BigDecimal widthMax;
     private BigDecimal widthMin;
     private String widthUnit;
     /**
-     * length * width * hight
-     */
-    private BigDecimal volumeMin;
-    private BigDecimal volumeMax;
-    private String volumeUnit;
-    /**
-     * (width + hight) * 2
+     * (width + height) * 2
      */
     private BigDecimal girthMin;
+    private BigDecimal volumeMax;
+    private String volumeUnit;
+    private String girthUnit;
     private BigDecimal girthMax;
-    private String grithUnit;
+    /**
+     * length + width + height
+     */
+    private BigDecimal lwhMax;
+    private BigDecimal lwhMin;
+    private String lwhUnit;
+    /**
+     * length + (l(min s) + w(min s)) * 2
+     */
+    private BigDecimal lMinSMax;
+    private BigDecimal lMinSMin;
+    private String lMinSUnit;
+
+    @Tolerate
+    public ChannelRule() {
+    }
+
     private BigDecimal bagWeightMax;
     private BigDecimal bagWeightMin;
     private BigDecimal amountMax;

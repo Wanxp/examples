@@ -1,14 +1,16 @@
 package com.wanxp.srping.batchtest;
 
 import com.wanxp.batchtest.dao.secondary.ChannelRepository;
-import com.wanxp.batchtest.entity.secondary.Channel;
+import com.wanxp.batchtest.model.entity.secondary.Channel;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.mock.mockito.MockBean;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doAnswer;
 
 public class TestRepository extends BaseRepositoryTests {
 
-    @Autowired
+    @MockBean
     private ChannelRepository channelRepository;
 
 
@@ -16,10 +18,10 @@ public class TestRepository extends BaseRepositoryTests {
 
     @Test
     public void channelShouldHaveData() {
-        Channel channel = Mockito.mock(Channel.class);
-        channel.setChannelId(CHANNEL_ID_FOR_TEST);
-        Mockito.when(channelRepository.save(channel))
-                .thenReturn(channel);
-
+        Channel channel = doAnswer((invocation) -> {
+            Channel c = invocation.getArgument(0);
+            c.setChannelId(CHANNEL_ID_FOR_TEST);
+            return null;
+        }).when(channelRepository).save(any(Channel.class));
     }
 }

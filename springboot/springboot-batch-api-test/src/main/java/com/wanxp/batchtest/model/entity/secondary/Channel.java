@@ -1,4 +1,4 @@
-package com.wanxp.batchtest.entity.secondary;
+package com.wanxp.batchtest.model.entity.secondary;
 
 import lombok.Data;
 
