@@ -35,10 +35,10 @@ public class SecondaryDataSourceConfig {
     @Qualifier(SECONDARY_DATASOURCE_NAME)
     private DataSource secondaryDataSource;
 
-    @Bean(name = SECONDARY_ENTITY_MANAGER_NAME)
-    public EntityManager entityManager(EntityManagerFactoryBuilder entityManagerFactoryBuilder) {
-        return secondaryEntityManagerFactory(entityManagerFactoryBuilder).getObject().createEntityManager();
-    }
+//    @Bean(name = SECONDARY_ENTITY_MANAGER_NAME)
+//    public EntityManager entityManager(EntityManagerFactoryBuilder entityManagerFactoryBuilder) {
+//        return secondaryEntityManagerFactory(entityManagerFactoryBuilder).getObject().createEntityManager();
+//    }
 
     @Bean(name = SECONDARY_ENTITY_MANAGER_FACTORY_NAME)
     public LocalContainerEntityManagerFactoryBean secondaryEntityManagerFactory(EntityManagerFactoryBuilder entityManagerFactoryBuilder) {

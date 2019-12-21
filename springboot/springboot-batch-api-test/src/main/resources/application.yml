@@ -17,7 +17,7 @@ spring:
     primary:
       jdbc-url: jdbc:mysql://127.0.0.1:3306/master?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8&useSSL=false
       username: root
-      password: '0001'
+      password: '9111'
       driver-class-name: com.mysql.jdbc.Driver
       type: com.zaxxer.hikari.HikariDataSource
       hikari:
@@ -31,7 +31,7 @@ spring:
     secondary:
       jdbc-url: jdbc:mysql://127.0.0.1:3306/slave?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8&useSSL=false
       username: root
-      password: '0001'
+      password: '9111'
       driver-class-name: com.mysql.jdbc.Driver
       type: com.zaxxer.hikari.HikariDataSource
       hikari:

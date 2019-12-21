@@ -36,11 +36,11 @@ public class PrimaryDataSourceConfig {
     @Qualifier(PRIMARY_DATASOURCE_NAME)
     private DataSource primaryDataSource;
 
-    @Primary
-    @Bean(name = PRIMARY_ENTITY_MANAGER_NAME)
-    public EntityManager entityManager(EntityManagerFactoryBuilder entityManagerFactoryBuilder) {
-        return primaryEntityManagerFactory(entityManagerFactoryBuilder).getObject().createEntityManager();
-    }
+//    @Primary
+//    @Bean(name = PRIMARY_ENTITY_MANAGER_NAME)
+//    public EntityManager entityManager(EntityManagerFactoryBuilder entityManagerFactoryBuilder) {
+//        return primaryEntityManagerFactory(entityManagerFactoryBuilder).getObject().createEntityManager();
+//    }
 
     @Primary
     @Bean(name = PRIMARY_ENTITY_MANAGER_FACTORY_NAME)

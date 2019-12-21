@@ -20,6 +20,7 @@ import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.batch.item.file.mapping.DefaultLineMapper;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
@@ -46,7 +47,10 @@ public class BatchConfig {
     @Autowired
     private LineMapper channelFileDtoLineMapper;
 
-    @PersistenceContext(name = PRIMARY_ENTITY_MANAGER_FACTORY_NAME)
+
+//    @PersistenceContext(name = PRIMARY_ENTITY_MANAGER_FACTORY_NAME)
+    @Autowired
+    @Qualifier(PRIMARY_ENTITY_MANAGER_FACTORY_NAME)
     private EntityManagerFactory primaryEntityManagerFactory;
 
     @Autowired
