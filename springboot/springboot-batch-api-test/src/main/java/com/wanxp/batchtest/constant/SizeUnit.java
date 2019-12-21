@@ -1,6 +1,7 @@
 package com.wanxp.batchtest.constant;
 
 public enum SizeUnit {
+    MM("mm", "毫米"),
     CM("cm", "厘米"),
     M("m", "米"),
     M3("m^3", "立方米");

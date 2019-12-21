@@ -6,6 +6,7 @@ import com.wanxp.batchtest.model.dto.ChannelFileDto;
 import com.wanxp.batchtest.model.dto.SizeDto;
 import com.wanxp.batchtest.model.entity.primary.ChannelRule;
 import com.wanxp.batchtest.model.entity.secondary.Channel;
+import com.wanxp.batchtest.util.PatternBuilder;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,22 +22,79 @@ import java.util.regex.Pattern;
 @Component
 public class ChannelRuleProcessor implements ItemProcessor<ChannelFileDto, ChannelRule> {
 
-    public static final Set<String> LENGTH_MIN_PATTERN = new HashSet<>(Arrays.asList("最小尺寸：([\\d.]+)\\s?([米*厘米**cm**CM*]+)\\s?x\\s?[\\d.]+\\s?[米*厘米**cm**CM*]+\\s?x\\s?[\\d.]+\\s?[米*厘米**cm**CM*]+"));
-    public static final Set<String> WIDTH_MIN_PATTERN = new HashSet<>(Arrays.asList("最小尺寸：[\\d.]+\\s?[米*厘米**cm**CM*]+\\s?x\\s?([\\d.]+)\\s?([米*厘米**cm**CM*]+)\\s?x [\\d.]+\\s?[米*厘米**cm**CM*]+"));
-    public static final Set<String> HEIGHT_MIN_PATTERN = new HashSet<>(Arrays.asList("最小尺寸：[\\d.]+\\s?[米*厘米**cm**CM*]+\\s?x\\s?[\\d.]+\\s?[米*厘米**cm**CM*]+\\s?x\\s?([\\d.]+)\\s?([米*厘米**cm**CM*]+)"));
-    public static final Set<String> GIRTH_MAX_PATTERN = new HashSet<>(Arrays.asList("最大围长 \\(宽\\+高）×2 ≤([\\d.]+)([米*厘米**cm**CM*]+)"));
-    public static final Set<String> VOLUME_MAX_PATTERN = new HashSet<>(Arrays.asList("体积[<≤]([\\d.]+)([*立方米*]+)"));
-    public static final Set<String> LWH_MAX_PATTERN = new HashSet<>(Arrays.asList("长\\+宽\\+高[<≤]([\\d.]+)([米*厘米**cm**CM*]+)"));
-    public static final Set<String> L_MIN_S_MAX_PATTERN = new HashSet<>(Arrays.asList("长\\+最小面周长[<≤]([\\d.]+)([米*厘米**cm**CM*]+)"));
-    public static final Set<String> LONG_MAX_PATTERN = new HashSet<>(Arrays.asList("^最长单边不超过([\\d.]+)([米*厘米**cm**CM*]+)"
-            , "^单边长[＜<≤]+([\\d.]+)([米*厘米**cm**CM]+)", "最长边[＜<≤]([\\d.]+)([米*厘米**cm**CM*]+)"));
-    private static final String SMALL = "[＜<≤]+";
-    public static final Set<String> LENGTH_MAX_PATTERN = new HashSet<>(Arrays.asList(new PatternBuilder("^长")SMALL + "()([米*厘米**cm**CM*]+)"));
+    private static final String SMALL = "[＜<≤*<=**<＝*]+";
     private static final String DIGITAL = "[\\d.]+";
-    private static final String SIZE_UNIT = "[米*厘米**cm**CM*]+";
+    private static final String SIZE_UNIT = "[米*厘米**cm**CM*立方米*毫米*]+";
+    private static final String SPACE = "\\s?";
+
+    public static final Set<String> LENGTH_MIN_PATTERN = new HashSet<>(Arrays.asList(
+            PatternBuilder.patternBuilder("最小尺寸：").includeGroup(DIGITAL).include(SPACE).includeGroup(SIZE_UNIT).include(SPACE).include("x").include(SPACE)
+                    .include(DIGITAL).include(SPACE).include(SIZE_UNIT).include(SPACE).include("x").include(SPACE).include(DIGITAL).include(SPACE).include(SIZE_UNIT).build(),
+            PatternBuilder.patternBuilder("长×宽×高 = ").includeGroup(DIGITAL).include(SPACE).includeGroup(SIZE_UNIT).include(SPACE).include("x").include(SPACE)
+                    .include(DIGITAL).include(SPACE).include(SIZE_UNIT).include(SPACE).include("x").include(SPACE).include(DIGITAL).include(SPACE).include(SIZE_UNIT).build()
+
+    ));
+    public static final Set<String> LENGTH_MAX_PATTERN = new HashSet<>(Arrays.asList(PatternBuilder
+                    .patternBuilder("^长").include(SMALL).includeGroup(DIGITAL).includeGroup(SIZE_UNIT).build(),
+            PatternBuilder.patternBuilder("长×宽×高 = ").includeGroup(DIGITAL).include(SPACE).includeGroup(SIZE_UNIT).include(SPACE).include("x").include(SPACE)
+                    .include(DIGITAL).include(SPACE).include(SIZE_UNIT).include(SPACE).include("x").include(SPACE).include(DIGITAL).include(SPACE).include(SIZE_UNIT).build()
+    ));
+
+
+    public static final Set<String> WIDTH_MIN_PATTERN = new HashSet<>(Arrays.asList(
+            PatternBuilder.patternBuilder("最小尺寸：").include(DIGITAL).include(SPACE).include(SIZE_UNIT).include(SPACE).include("x").include(SPACE)
+        .includeGroup(DIGITAL).include(SPACE).includeGroup(SIZE_UNIT).include(SPACE).include("x").include(SPACE).include(DIGITAL).include(SPACE).include(SIZE_UNIT).build(),
+            PatternBuilder.patternBuilder("长×宽×高 = ").include(DIGITAL).include(SPACE).include(SIZE_UNIT).include(SPACE).include("x").include(SPACE)
+                    .includeGroup(DIGITAL).include(SPACE).includeGroup(SIZE_UNIT).include(SPACE).include("x").include(SPACE).include(DIGITAL).include(SPACE).include(SIZE_UNIT).build()
+
+    ));
+
+    public static final Set<String> WIDTH_MAX_PATTERN = new HashSet<>(Arrays.asList(
+            PatternBuilder.patternBuilder("长×宽×高 = ").include(DIGITAL).include(SPACE).include(SIZE_UNIT).include(SPACE).include("x").include(SPACE)
+                    .includeGroup(DIGITAL).include(SPACE).includeGroup(SIZE_UNIT).include(SPACE).include("x").include(SPACE).include(DIGITAL).include(SPACE).include(SIZE_UNIT).build()
+
+    ));
+
+
+
+    public static final Set<String> HEIGHT_MIN_PATTERN = new HashSet<>(Arrays.asList(
+            PatternBuilder.patternBuilder("最小尺寸：").include(DIGITAL).include(SPACE).include(SIZE_UNIT).include(SPACE).include("x").include(SPACE)
+                    .include(DIGITAL).include(SPACE).include(SIZE_UNIT).include(SPACE).include("x").include(SPACE).includeGroup(DIGITAL).include(SPACE).includeGroup(SIZE_UNIT).build(),
+            PatternBuilder.patternBuilder("长×宽×高 = ").include(DIGITAL).include(SPACE).include(SIZE_UNIT).include(SPACE).include("x").include(SPACE)
+                    .include(DIGITAL).include(SPACE).include(SIZE_UNIT).include(SPACE).include("x").include(SPACE).includeGroup(DIGITAL).include(SPACE).includeGroup(SIZE_UNIT).build()
+
+    ));
+
+    public static final Set<String> HEIGHT_MAX_PATTERN = new HashSet<>(Arrays.asList(
+            PatternBuilder.patternBuilder("长×宽×高 = ").include(DIGITAL).include(SPACE).include(SIZE_UNIT).include(SPACE).include("x").include(SPACE)
+                    .include(DIGITAL).include(SPACE).include(SIZE_UNIT).include(SPACE).include("x").include(SPACE).includeGroup(DIGITAL).include(SPACE).includeGroup(SIZE_UNIT).build()
+
+    ));
+
+
+
+
+
+    public static final Set<String> GIRTH_MAX_PATTERN = new HashSet<>(Arrays.asList(
+            PatternBuilder.patternBuilder("最大围长 \\(宽\\+高）×2 ").include(SMALL).includeGroup(DIGITAL).includeGroup(SIZE_UNIT).build()
+    ));
+    public static final Set<String> VOLUME_MAX_PATTERN = new HashSet<>(Arrays.asList(
+            PatternBuilder.patternBuilder("体积").include(SMALL).includeGroup(DIGITAL).includeGroup(SIZE_UNIT).build()
+    ));
+    public static final Set<String> LWH_MAX_PATTERN = new HashSet<>(Arrays.asList(
+            PatternBuilder.patternBuilder("长\\+宽\\+高").include(SMALL).includeGroup(DIGITAL).includeGroup(SIZE_UNIT).build()
+    ));
+    public static final Set<String> L_MIN_S_MAX_PATTERN = new HashSet<>(Arrays.asList(
+            PatternBuilder.patternBuilder("长\\+最小面周长").include(SMALL).includeGroup(DIGITAL).includeGroup(SIZE_UNIT).build()));
+    public static final Set<String> LONG_MAX_PATTERN = new HashSet<>(Arrays.asList(PatternBuilder.patternBuilder("^最长单边不超过").includeGroup(DIGITAL).includeGroup(SIZE_UNIT).build(),
+             PatternBuilder.patternBuilder("^单边长").include(SMALL).includeGroup(DIGITAL).includeGroup(SIZE_UNIT).build(),
+            PatternBuilder.patternBuilder("最长边").include(SMALL).includeGroup(DIGITAL).includeGroup(SIZE_UNIT).build()
+    ));
 
     static {
         LENGTH_MAX_PATTERN.addAll(LONG_MAX_PATTERN);
+        WIDTH_MAX_PATTERN.addAll(LONG_MAX_PATTERN);
+        HEIGHT_MAX_PATTERN.addAll(LONG_MAX_PATTERN);
     }
 
     @Autowired
@@ -52,7 +110,7 @@ public class ChannelRuleProcessor implements ItemProcessor<ChannelFileDto, Chann
                 .sortCode("")
                 .combine(false)
                 .bagWeightLimit("")
-                .dimension("最小尺寸：14 cm x 9 cm x 0.1cm ；最长边＜60cm，长+宽+高≤90cm")
+                .dimension("长≤100厘米; 长+宽+高<＝300厘米")
                 .declareValue("0<Value<=1000 AUD")
                 .incoterm("DDU/DDP")
                 .weight("<=30kg")
@@ -105,7 +163,7 @@ public class ChannelRuleProcessor implements ItemProcessor<ChannelFileDto, Chann
         //height_max
         processHeightMax(dimension, channelRule);
         //height_min
-        processWidthMin(dimension, channelRule);
+        processHeightMin(dimension, channelRule);
 
         //girth_max
         processGirthMax(dimension, channelRule);
@@ -161,7 +219,7 @@ public class ChannelRuleProcessor implements ItemProcessor<ChannelFileDto, Chann
      * @return
      */
     private ChannelRule processWidthMax(String dimension, ChannelRule channelRule) {
-        SizeDto sizeDto = processSize(dimension, LONG_MAX_PATTERN);
+        SizeDto sizeDto = processSize(dimension, WIDTH_MAX_PATTERN);
         channelRule.setWidthMax(sizeDto.getValue());
         channelRule.setWidthUnit(sizeDto.getUnit());
         return channelRule;
@@ -187,7 +245,7 @@ public class ChannelRuleProcessor implements ItemProcessor<ChannelFileDto, Chann
      * @return
      */
     private ChannelRule processHeightMax(String dimension, ChannelRule channelRule) {
-        SizeDto sizeDto = processSize(dimension, LONG_MAX_PATTERN);
+        SizeDto sizeDto = processSize(dimension, HEIGHT_MAX_PATTERN);
         channelRule.setHeightMax(sizeDto.getValue());
         channelRule.setHeightUnit(sizeDto.getUnit());
         return channelRule;
@@ -285,40 +343,4 @@ public class ChannelRuleProcessor implements ItemProcessor<ChannelFileDto, Chann
         }
         return sizeDto;
     }
-
-    class PatternBuilder {
-        private static final String INCLUDE_LABEL_LEFT = "(";
-        private static final String INCLUDE_LABEL_RIGHT = ")";
-        private StringBuilder stringBuilder;
-
-        PatternBuilder(String pattern) {
-            this.stringBuilder = new StringBuilder(pattern);
-
-        }
-
-        PatternBuilder() {
-            this.stringBuilder = new StringBuilder();
-        }
-
-        public static PatternBuilder patternBuilder() {
-
-        }
-
-        public PatternBuilder includeGroup(String group) {
-            stringBuilder.append(INCLUDE_LABEL_LEFT).append(group).append(INCLUDE_LABEL_RIGHT);
-            return this;
-        }
-
-        public PatternBuilder include(String pattern) {
-            stringBuilder.append(value);
-            return this;
-        }
-
-        public String build() {
-            return stringBuilder.toString();
-        }
-
-
-    }
-
 }
