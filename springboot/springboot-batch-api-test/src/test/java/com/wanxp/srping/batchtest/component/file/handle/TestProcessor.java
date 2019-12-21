@@ -40,7 +40,7 @@ public class TestProcessor extends BatchTestApplicationTests {
                         + VOLUME_MAX + VOLUME_UNIT.getCnName())
                 .declareValue("0<Value<=1000 AUD")
                 .incoterm("DDU/DDP")
-                .weight("<=30kg")
+                .weight(">5kg")
                 .remark("从2020年1月1日起， max weight 22kg， max length 100cm")
                 .build();
     }
@@ -49,6 +49,7 @@ public class TestProcessor extends BatchTestApplicationTests {
     @Test
     public void testChannelRuleProcessor() throws Exception {
         ChannelRule channelRule = channelRuleProcessor.process(channelFileDto);
+        System.err.println(channelRule);
         assertEquals(LENGTH_MAX, channelRule.getLengthMax());
         assertEquals(LENGTH_UNIT.getType(), channelRule.getLengthUnit());
         assertEquals(GIRTH_MAX, channelRule.getGirthMax());

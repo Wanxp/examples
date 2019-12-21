@@ -2,10 +2,20 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/spring-cloud-service-restful-example" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/spring-cloud-service-restful-example/user-service" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/spring-cloud-service-restful-example/user-web-register" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/springboot-job-manager" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/thymeleaf" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring/spring-hibernate-4/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring/spring-hibernate-4/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring/spring-tx-3/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring/spring-tx-3/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot/datasource/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot/jira-export-to-mail/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot/spring-data-book/section-2-repository/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot/springboot-batch-api-test/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot/springboot-batch-excel/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot/springboot-job-manager/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot/springboot-security/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springcloud/spring-cloud-service-restful-example/user-web-register/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thirdparty/thymeleaf/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thirdparty/thymeleaf/src/main/resources" charset="UTF-8" />
   </component>
 </project>

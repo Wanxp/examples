@@ -63,6 +63,7 @@ public class ChannelRule {
 
     private BigDecimal bagWeightMax;
     private BigDecimal bagWeightMin;
+    private String bagWeightUnit;
     private BigDecimal amountMax;
     private BigDecimal amountMin;
     @ElementCollection(targetClass = String.class)
@@ -71,6 +72,7 @@ public class ChannelRule {
     private List<String> incoterm;
     private BigDecimal weightMin;
     private BigDecimal weightMax;
+    private String weightUnit;
     private String remark;
 
 }

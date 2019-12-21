@@ -20,6 +20,8 @@ public class ChannelFileDto {
     private String incoterm;
     private String weight;
     private String remark;
+    private String mark;
+
 
     @Tolerate
     public ChannelFileDto() {

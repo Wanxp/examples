@@ -18,4 +18,9 @@ public class Constant {
     public static final String SECONDARY_JPA_PACKAGE_NAME = "com.wanxp.batchtest.dao.secondary";
     public static final String SECONDARY_PERSISTENCE_UNIT_NAME = "secondaryPersistenceUnit";
     public static final String SECONDARY_JPA_ENTITY_PACKAGE_NAME = "com.wanxp.batchtest.model.entity.secondary";
+
+
+    public static final String CHANNEL_FILE_ITEM_READER = "channelFileItemReader";
+
+    public static final String CSV_COLUMN_SPILIT = ",";
 }

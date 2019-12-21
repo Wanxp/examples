@@ -1,0 +1,70 @@
+spring:
+  application:
+    name: jira-export-to-mail
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/jira_export_job?setUnicode=true&characterEncoding=utf8
+    username: root
+    password: '0001'
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      auto-commit: true
+      minimum-idle: 2
+      idle-timeout: 60000
+      connection-timeout: 30000
+      max-lifetime: 1800000
+      pool-name: DatebookHikariCP
+      maximum-pool-size: 5
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    # 密码 没有则可以不填
+    #    password: 123456
+    # 如果使用的jedis 则将lettuce改成jedis即可
+    lettuce:
+      pool:
+        # 最大活跃链接数 默认8
+        max-active: 8
+        # 最大空闲连接数 默认8
+        max-idle: 8
+        # 最小空闲连接数 默认0
+        min-idle: 0
+  mail:
+    host: smtp.exmail.qq.com
+    username: mail
+    password: password
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+  quartz:
+    job-store-type: jdbc
+    jdbc:
+      initialize-schema: never
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceId: AUTO
+            instanceName: jira-export-to-mail-scheduler
+          jobStore:
+            class: org.quartz.impl.jdbcjobstore.JobStoreTX
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+            isClustered: false
+            misfireThreshold: 60000
+            tablePrefix: QRTZ_
+            useProperties: true
+          plugin:
+            shutdownHook:
+              class: org.quartz.plugins.management.ShutdownHookPlugin
+              cleanShutdown: true
+          threadPool:
+            threadCount: 5
+jira:
+  uri: http://52.83.110.82:8801/
+  username: jirausername
+  password: jirapassword
+

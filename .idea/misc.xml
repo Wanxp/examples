@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/spring/spring-hibernate-4" />
+    <file type="web" url="file://$PROJECT_DIR$/spring/spring-tx-3" />
+    <file type="web" url="file://$PROJECT_DIR$/thirdparty/thymeleaf" />
     <file type="web" url="file://$PROJECT_DIR$/thymeleaf" />
   </component>
   <component name="JavaScriptSettings">

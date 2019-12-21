@@ -8,6 +8,11 @@ spring:
       ddl-auto: update
   #      naming:
   #        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      jdbc:
+        batch_size: 500
+        batch_versioned_data: true
+        order_inserts: true
+        order_updates: true
   datasource:
     primary:
       jdbc-url: jdbc:mysql://127.0.0.1:3306/master?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8&useSSL=false

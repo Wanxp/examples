@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="war" name="thymeleaf:war">
-    <output-path>$PROJECT_DIR$/thymeleaf/target</output-path>
+    <output-path>$PROJECT_DIR$/thirdparty/thymeleaf/target</output-path>
     <properties id="maven-jee-properties">
       <options>
         <module>thymeleaf</module>

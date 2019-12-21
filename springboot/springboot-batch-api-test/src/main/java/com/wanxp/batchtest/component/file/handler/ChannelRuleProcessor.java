@@ -13,116 +13,26 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static com.wanxp.batchtest.component.file.handler.ChannelPropertyProcessor.*;
+
 
 @Component
 public class ChannelRuleProcessor implements ItemProcessor<ChannelFileDto, ChannelRule> {
 
-    private static final String SMALL = "[＜<≤*<=**<＝*]+";
-    private static final String DIGITAL = "[\\d.]+";
-    private static final String SIZE_UNIT = "[米*厘米**cm**CM*立方米*毫米*]+";
-    private static final String SPACE = "\\s?";
-
-    public static final Set<String> LENGTH_MIN_PATTERN = new HashSet<>(Arrays.asList(
-            PatternBuilder.patternBuilder("最小尺寸：").includeGroup(DIGITAL).include(SPACE).includeGroup(SIZE_UNIT).include(SPACE).include("x").include(SPACE)
-                    .include(DIGITAL).include(SPACE).include(SIZE_UNIT).include(SPACE).include("x").include(SPACE).include(DIGITAL).include(SPACE).include(SIZE_UNIT).build(),
-            PatternBuilder.patternBuilder("长×宽×高 = ").includeGroup(DIGITAL).include(SPACE).includeGroup(SIZE_UNIT).include(SPACE).include("x").include(SPACE)
-                    .include(DIGITAL).include(SPACE).include(SIZE_UNIT).include(SPACE).include("x").include(SPACE).include(DIGITAL).include(SPACE).include(SIZE_UNIT).build()
-
-    ));
-    public static final Set<String> LENGTH_MAX_PATTERN = new HashSet<>(Arrays.asList(PatternBuilder
-                    .patternBuilder("^长").include(SMALL).includeGroup(DIGITAL).includeGroup(SIZE_UNIT).build(),
-            PatternBuilder.patternBuilder("长×宽×高 = ").includeGroup(DIGITAL).include(SPACE).includeGroup(SIZE_UNIT).include(SPACE).include("x").include(SPACE)
-                    .include(DIGITAL).include(SPACE).include(SIZE_UNIT).include(SPACE).include("x").include(SPACE).include(DIGITAL).include(SPACE).include(SIZE_UNIT).build()
-    ));
-
-
-    public static final Set<String> WIDTH_MIN_PATTERN = new HashSet<>(Arrays.asList(
-            PatternBuilder.patternBuilder("最小尺寸：").include(DIGITAL).include(SPACE).include(SIZE_UNIT).include(SPACE).include("x").include(SPACE)
-        .includeGroup(DIGITAL).include(SPACE).includeGroup(SIZE_UNIT).include(SPACE).include("x").include(SPACE).include(DIGITAL).include(SPACE).include(SIZE_UNIT).build(),
-            PatternBuilder.patternBuilder("长×宽×高 = ").include(DIGITAL).include(SPACE).include(SIZE_UNIT).include(SPACE).include("x").include(SPACE)
-                    .includeGroup(DIGITAL).include(SPACE).includeGroup(SIZE_UNIT).include(SPACE).include("x").include(SPACE).include(DIGITAL).include(SPACE).include(SIZE_UNIT).build()
-
-    ));
-
-    public static final Set<String> WIDTH_MAX_PATTERN = new HashSet<>(Arrays.asList(
-            PatternBuilder.patternBuilder("长×宽×高 = ").include(DIGITAL).include(SPACE).include(SIZE_UNIT).include(SPACE).include("x").include(SPACE)
-                    .includeGroup(DIGITAL).include(SPACE).includeGroup(SIZE_UNIT).include(SPACE).include("x").include(SPACE).include(DIGITAL).include(SPACE).include(SIZE_UNIT).build()
-
-    ));
-
-
-
-    public static final Set<String> HEIGHT_MIN_PATTERN = new HashSet<>(Arrays.asList(
-            PatternBuilder.patternBuilder("最小尺寸：").include(DIGITAL).include(SPACE).include(SIZE_UNIT).include(SPACE).include("x").include(SPACE)
-                    .include(DIGITAL).include(SPACE).include(SIZE_UNIT).include(SPACE).include("x").include(SPACE).includeGroup(DIGITAL).include(SPACE).includeGroup(SIZE_UNIT).build(),
-            PatternBuilder.patternBuilder("长×宽×高 = ").include(DIGITAL).include(SPACE).include(SIZE_UNIT).include(SPACE).include("x").include(SPACE)
-                    .include(DIGITAL).include(SPACE).include(SIZE_UNIT).include(SPACE).include("x").include(SPACE).includeGroup(DIGITAL).include(SPACE).includeGroup(SIZE_UNIT).build()
-
-    ));
-
-    public static final Set<String> HEIGHT_MAX_PATTERN = new HashSet<>(Arrays.asList(
-            PatternBuilder.patternBuilder("长×宽×高 = ").include(DIGITAL).include(SPACE).include(SIZE_UNIT).include(SPACE).include("x").include(SPACE)
-                    .include(DIGITAL).include(SPACE).include(SIZE_UNIT).include(SPACE).include("x").include(SPACE).includeGroup(DIGITAL).include(SPACE).includeGroup(SIZE_UNIT).build()
-
-    ));
-
-
-
-
-
-    public static final Set<String> GIRTH_MAX_PATTERN = new HashSet<>(Arrays.asList(
-            PatternBuilder.patternBuilder("最大围长 \\(宽\\+高）×2 ").include(SMALL).includeGroup(DIGITAL).includeGroup(SIZE_UNIT).build()
-    ));
-    public static final Set<String> VOLUME_MAX_PATTERN = new HashSet<>(Arrays.asList(
-            PatternBuilder.patternBuilder("体积").include(SMALL).includeGroup(DIGITAL).includeGroup(SIZE_UNIT).build()
-    ));
-    public static final Set<String> LWH_MAX_PATTERN = new HashSet<>(Arrays.asList(
-            PatternBuilder.patternBuilder("长\\+宽\\+高").include(SMALL).includeGroup(DIGITAL).includeGroup(SIZE_UNIT).build()
-    ));
-    public static final Set<String> L_MIN_S_MAX_PATTERN = new HashSet<>(Arrays.asList(
-            PatternBuilder.patternBuilder("长\\+最小面周长").include(SMALL).includeGroup(DIGITAL).includeGroup(SIZE_UNIT).build()));
-    public static final Set<String> LONG_MAX_PATTERN = new HashSet<>(Arrays.asList(PatternBuilder.patternBuilder("^最长单边不超过").includeGroup(DIGITAL).includeGroup(SIZE_UNIT).build(),
-             PatternBuilder.patternBuilder("^单边长").include(SMALL).includeGroup(DIGITAL).includeGroup(SIZE_UNIT).build(),
-            PatternBuilder.patternBuilder("最长边").include(SMALL).includeGroup(DIGITAL).includeGroup(SIZE_UNIT).build()
-    ));
-
-    static {
-        LENGTH_MAX_PATTERN.addAll(LONG_MAX_PATTERN);
-        WIDTH_MAX_PATTERN.addAll(LONG_MAX_PATTERN);
-        HEIGHT_MAX_PATTERN.addAll(LONG_MAX_PATTERN);
-    }
-
     @Autowired
     private ChannelRepository channelRepository;
 
-    public static void main(String[] args) throws Exception {
-        ChannelRuleProcessor c = new ChannelRuleProcessor();
-        ChannelFileDto channelFileDto = ChannelFileDto.builder()
-                .serviceName("ASP China-Australia")
-                .serviceCode("UBI.ASP.CN2AU.AUPOST")
-                .serviceOption("E-Parcel")
-                .cnName("澳洲全程（ASP和线下客户）")
-                .sortCode("")
-                .combine(false)
-                .bagWeightLimit("")
-                .dimension("长≤100厘米; 长+宽+高<＝300厘米")
-                .declareValue("0<Value<=1000 AUD")
-                .incoterm("DDU/DDP")
-                .weight("<=30kg")
-                .remark("从2020年1月1日起， max weight 22kg， max length 100cm")
-                .build();
-        ChannelRule channelRule = new ChannelRule();
-        c.processDimension(channelRule, channelFileDto);
-        System.out.println(channelRule);
-    }
+    @Autowired
+    private ChannelRuleDimensionProcessor channelRuleDimensionProcessor ;
 
     @Override
     public ChannelRule process(ChannelFileDto item) throws Exception {
+        if (item != null && "*".equals(item.getMark()))
+            return null;
         Channel channel = channelRepository.getByName(item.getServiceName());
         if (channel == null)
             return null;
@@ -133,197 +43,107 @@ public class ChannelRuleProcessor implements ItemProcessor<ChannelFileDto, Chann
                 .cnName(item.getServiceName())
                 .sortCode(item.getSortCode())
                 .build();
-        processDimension(channelRule, item);
-
-
+        channelRuleDimensionProcessor.process(item, channelRule);
+        processBag(item, channelRule);
+        processIncoterm(item, channelRule);
+        processAmount(item, channelRule);
+        processWeightMax(item, channelRule);
+        processWeightMin(item, channelRule);
         return channelRule;
     }
 
     /**
-     * 处理尺寸
+     * 处理 大袋重量
      *
      * @param channelRule
      * @param item
      */
-    private void processDimension(ChannelRule channelRule, ChannelFileDto item) {
-        String dimension = item.getDimension();
-        if (StringUtils.isEmpty(dimension))
+    private void processBag(ChannelFileDto item, ChannelRule channelRule) {
+        String bagInfo = item.getBagWeightLimit();
+        if (StringUtils.isEmpty(bagInfo))
             return;
-        //length_max
-        processLengthMax(dimension, channelRule);
-        //length_min
-        processLengthMin(dimension, channelRule);
-
-        //width_max
-        processWidthMax(dimension, channelRule);
-
-        //width_min
-        processWidthMin(dimension, channelRule);
-
-        //height_max
-        processHeightMax(dimension, channelRule);
-        //height_min
-        processHeightMin(dimension, channelRule);
-
-        //girth_max
-        processGirthMax(dimension, channelRule);
-
-        //girth_min
-        //lwh_max
-        processLWHMax(dimension, channelRule);
-        //lwh_min
-
-        //lMinS_max
-        processLMinSMax(dimension, channelRule);
-
-        //lMinS_min
-
-        //volume_max
-        processVolumeMax(dimension, channelRule);
-
-        //volume_min
-
-
+        SizeDto sizeDto = processSize(bagInfo, "([\\d]+)([KG]+)");
+        channelRule.setBagWeightMax(sizeDto.getValue());
+        channelRule.setBagWeightUnit(sizeDto.getUnit());
+    }
+    /**
+     * 处理 大袋重量
+     *
+     * @param channelRule
+     * @param item
+     */
+    private void processAmount(ChannelFileDto item, ChannelRule channelRule) {
+        String declareValue = item.getDeclareValue();
+        if (StringUtils.isEmpty(declareValue))
+            return;
+        SizeDto sizeDto = processSize(declareValue,
+                PatternBuilder.patternBuilder("Value")
+                        .include(SMALL)
+                        .includeGroup(DIGITAL)
+                        .include(SPACE)
+                        .includeGroup(CURRENCY)
+                        .build()
+                );
+        channelRule.setBagWeightMax(sizeDto.getValue());
+        channelRule.setBagWeightUnit(sizeDto.getUnit());
     }
 
     /**
-     * 获取 长 最大值
+     * 处理 大袋重量
      *
-     * @param dimension
-     * @return
+     * @param channelRule
+     * @param item
      */
-    private ChannelRule processLengthMax(String dimension, ChannelRule channelRule) {
-        SizeDto sizeDto = processSize(dimension, LENGTH_MAX_PATTERN);
-        channelRule.setLengthMax(sizeDto.getValue());
-        channelRule.setLengthUnit(sizeDto.getUnit());
-        return channelRule;
+    private void processIncoterm(ChannelFileDto item, ChannelRule channelRule) {
+        String incoterm = item.getIncoterm();
+        if (StringUtils.isEmpty(incoterm))
+            return;
+        List<String> incoterms = PatternBuilder.patternBuilder("Value")
+                        .include(SMALL)
+                        .includeGroup(DIGITAL)
+                        .include(SPACE)
+                        .includeGroup(CURRENCY)
+                        .allTouchList(incoterm);
+        channelRule.setIncoterm(incoterms);
     }
 
     /**
-     * 获取 长 最小值
+     * 处理 重量
      *
-     * @param dimension
-     * @return
+     * @param channelRule
+     * @param item
      */
-    private ChannelRule processLengthMin(String dimension, ChannelRule channelRule) {
-        SizeDto sizeDto = processSize(dimension, LENGTH_MIN_PATTERN);
-        channelRule.setLengthMin(sizeDto.getValue());
-        channelRule.setLengthUnit(StringUtils.isEmpty(channelRule.getLengthUnit()) ? sizeDto.getUnit() : channelRule.getLengthUnit());
-        return channelRule;
+    private void processWeightMax(ChannelFileDto item, ChannelRule channelRule) {
+        String weight = item.getWeight();
+        if (StringUtils.isEmpty(weight))
+            return;
+        SizeDto sizeDto = processSize(weight, PatternBuilder.patternBuilder()
+                .include(SMALL)
+                .includeGroup(DIGITAL)
+                .include(SPACE)
+                .includeGroup(WEIGHT_SIZE_UNIT)
+                .build());
+        channelRule.setWeightMax(sizeDto.getValue());
+        channelRule.setWeightUnit("kg");
     }
-
     /**
-     * 获取 宽 最大值
+     * 处理 重量
      *
-     * @param dimension
-     * @return
+     * @param channelRule
+     * @param item
      */
-    private ChannelRule processWidthMax(String dimension, ChannelRule channelRule) {
-        SizeDto sizeDto = processSize(dimension, WIDTH_MAX_PATTERN);
-        channelRule.setWidthMax(sizeDto.getValue());
-        channelRule.setWidthUnit(sizeDto.getUnit());
-        return channelRule;
-    }
-
-    /**
-     * 获取 宽 最小值
-     *
-     * @param dimension
-     * @return
-     */
-    private ChannelRule processWidthMin(String dimension, ChannelRule channelRule) {
-        SizeDto sizeDto = processSize(dimension, WIDTH_MIN_PATTERN);
-        channelRule.setWidthMin(sizeDto.getValue());
-        channelRule.setWidthUnit(StringUtils.isEmpty(channelRule.getWidthUnit()) ? sizeDto.getUnit() : channelRule.getWidthUnit());
-        return channelRule;
-    }
-
-    /**
-     * 获取 高 最大值
-     *
-     * @param dimension
-     * @return
-     */
-    private ChannelRule processHeightMax(String dimension, ChannelRule channelRule) {
-        SizeDto sizeDto = processSize(dimension, HEIGHT_MAX_PATTERN);
-        channelRule.setHeightMax(sizeDto.getValue());
-        channelRule.setHeightUnit(sizeDto.getUnit());
-        return channelRule;
-    }
-
-    /**
-     * 获取 长 最小值
-     *
-     * @param dimension
-     * @return
-     */
-    private ChannelRule processHeightMin(String dimension, ChannelRule channelRule) {
-        SizeDto sizeDto = processSize(dimension, HEIGHT_MIN_PATTERN);
-        channelRule.setHeightMin(sizeDto.getValue());
-        channelRule.setHeightUnit(StringUtils.isEmpty(channelRule.getHeightUnit()) ? sizeDto.getUnit() : channelRule.getHeightUnit());
-        return channelRule;
-    }
-
-    /**
-     * 获取 长+宽+高 最大值
-     *
-     * @param dimension
-     * @return
-     */
-    private ChannelRule processLWHMax(String dimension, ChannelRule channelRule) {
-        SizeDto sizeDto = processSize(dimension, LWH_MAX_PATTERN);
-        channelRule.setLwhMax(sizeDto.getValue());
-        channelRule.setLwhUnit(sizeDto.getUnit());
-        return channelRule;
-    }
-
-    /**
-     * 获取 (宽+高) * 2 最大值
-     *
-     * @param dimension
-     * @return
-     */
-    private ChannelRule processGirthMax(String dimension, ChannelRule channelRule) {
-        SizeDto sizeDto = processSize(dimension, GIRTH_MAX_PATTERN);
-        channelRule.setGirthMax(sizeDto.getValue());
-        channelRule.setGirthUnit(sizeDto.getUnit());
-        return channelRule;
-    }
-
-    /**
-     * 获取 长 + (最小面周长) 最大值
-     *
-     * @param dimension
-     * @return
-     */
-    private ChannelRule processLMinSMax(String dimension, ChannelRule channelRule) {
-        SizeDto sizeDto = processSize(dimension, L_MIN_S_MAX_PATTERN);
-        channelRule.setLMinSMax(sizeDto.getValue());
-        channelRule.setLMinSUnit(sizeDto.getUnit());
-        return channelRule;
-    }
-
-    /**
-     * 获取 体积 最大值
-     *
-     * @param dimension
-     * @return
-     */
-    private ChannelRule processVolumeMax(String dimension, ChannelRule channelRule) {
-        SizeDto sizeDto = processSize(dimension, VOLUME_MAX_PATTERN);
-        channelRule.setVolumeMax(sizeDto.getValue());
-        channelRule.setVolumeUnit(sizeDto.getUnit());
-        return channelRule;
-    }
-
-    private SizeDto processSize(String dimension, Set<String> patternStringSet) {
-        return patternStringSet.stream().map(x -> {
-            return processSize(dimension, x);
-        }).filter(s -> {
-            return s.getValue() != null && BigDecimal.ZERO.compareTo(s.getValue()) < 0;
-        })
-                .findFirst()
-                .orElse(new SizeDto());
+    private void processWeightMin(ChannelFileDto item, ChannelRule channelRule) {
+        String weight = item.getWeight();
+        if (StringUtils.isEmpty(weight))
+            return;
+        SizeDto sizeDto = processSize(weight, PatternBuilder.patternBuilder()
+                .include(GREAT)
+                .includeGroup(DIGITAL)
+                .include(SPACE)
+                .includeGroup(WEIGHT_SIZE_UNIT)
+                .build());
+        channelRule.setWeightMin(sizeDto.getValue());
+        channelRule.setWeightUnit("kg");
     }
 
     /**
@@ -343,4 +163,6 @@ public class ChannelRuleProcessor implements ItemProcessor<ChannelFileDto, Chann
         }
         return sizeDto;
     }
+
+
 }
