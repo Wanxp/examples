@@ -13,19 +13,19 @@ public class ChannelRuleSetMapper implements FieldSetMapper<ChannelFileDto> {
     public ChannelFileDto mapFieldSet(FieldSet fieldSet) throws BindException {
         return ChannelFileDto
                 .builder()
-                .serviceName(fieldSet.readString("Service Name"))
-                .serviceCode(fieldSet.readString("Service Code"))
-                .serviceOption(fieldSet.readString("service option"))
-                .cnName(fieldSet.readString("CN Name"))
-                .sortCode(fieldSet.readString("Sort Code"))
-                .combine(!StringUtils.isEmpty(fieldSet.readString("是否可以合并装袋")))
-                .dimension(fieldSet.readString("Dimention "))
-                .bagWeightLimit(fieldSet.readString("大包限重"))
-                .declareValue(fieldSet.readString("Declare Value"))
-                .incoterm(fieldSet.readString("incoterm"))
-                .weight(fieldSet.readString("weight"))
-                .remark(fieldSet.readString("remark"))
-                .mark(fieldSet.readString("mark"))
+                .serviceName(fieldSet.readString(0))
+                .serviceCode(fieldSet.readString(1))
+                .serviceOption(fieldSet.readString(2))
+                .cnName(fieldSet.readString(3))
+                .sortCode(fieldSet.readString(4))
+                .combine(!StringUtils.isEmpty(fieldSet.readString(5)))
+                .dimension(fieldSet.readString(6))
+                .bagWeightLimit(fieldSet.readString(6))
+                .declareValue(fieldSet.readString(7))
+                .incoterm(fieldSet.readString(8))
+                .weight(fieldSet.readString(9))
+                .remark(fieldSet.readString(10))
+                .mark(fieldSet.readString(11))
                 .build();
     }
 }

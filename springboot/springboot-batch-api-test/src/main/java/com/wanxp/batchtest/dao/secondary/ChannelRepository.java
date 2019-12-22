@@ -7,5 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ChannelRepository extends JpaRepository<Channel, Integer> {
     Channel getByName(String name);
+    Channel getByCode(String code);
 
 }

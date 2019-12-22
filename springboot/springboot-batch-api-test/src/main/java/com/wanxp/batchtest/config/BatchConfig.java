@@ -1,6 +1,5 @@
 package com.wanxp.batchtest.config;
 
-import com.wanxp.batchtest.component.file.handler.ChannelRuleProcessor;
 import com.wanxp.batchtest.component.file.handler.ChannelRuleSetMapper;
 import com.wanxp.batchtest.component.file.handler.NotificationListener;
 import com.wanxp.batchtest.model.dto.ChannelFileDto;
@@ -11,7 +10,11 @@ import org.springframework.batch.core.configuration.annotation.JobBuilderFactory
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.item.ItemProcessor;
+import org.springframework.batch.item.ItemWriter;
+import org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider;
+import org.springframework.batch.item.database.JdbcBatchItemWriter;
 import org.springframework.batch.item.database.JpaItemWriter;
+import org.springframework.batch.item.database.builder.JdbcBatchItemWriterBuilder;
 import org.springframework.batch.item.database.builder.JpaItemWriterBuilder;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.LineMapper;
@@ -19,15 +22,22 @@ import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
 import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.batch.item.file.mapping.DefaultLineMapper;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
+import org.springframework.batch.item.json.JacksonJsonObjectMarshaller;
+import org.springframework.batch.item.json.JsonFileItemWriter;
+import org.springframework.batch.item.json.builder.JsonFileItemWriterBuilder;
+import org.springframework.batch.item.support.ListItemWriter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.configurationprocessor.metadata.JsonMarshaller;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.FileUrlResource;
+import org.springframework.core.io.Resource;
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceContext;
 import javax.sql.DataSource;
+
+import java.io.File;
+import java.net.MalformedURLException;
 
 import static com.wanxp.batchtest.constant.Constant.*;
 
@@ -47,14 +57,9 @@ public class BatchConfig {
     @Autowired
     private LineMapper channelFileDtoLineMapper;
 
-
-//    @PersistenceContext(name = PRIMARY_ENTITY_MANAGER_FACTORY_NAME)
-    @Autowired
-    @Qualifier(PRIMARY_ENTITY_MANAGER_FACTORY_NAME)
-    private EntityManagerFactory primaryEntityManagerFactory;
-
     @Autowired
     private ItemProcessor channelRuleProcessor;
+
 
 
 
@@ -62,7 +67,7 @@ public class BatchConfig {
     public FlatFileItemReader<ChannelFileDto> flatFileItemReader() {
         return new FlatFileItemReaderBuilder<ChannelFileDto>()
                 .name(CHANNEL_FILE_ITEM_READER)
-                .resource(new ClassPathResource("product.xlsx"))
+                .resource(new ClassPathResource("product1.csv"))
                 .delimited()
                 .names()
                 .lineMapper(channelFileDtoLineMapper)
@@ -84,15 +89,20 @@ public class BatchConfig {
     }
 
     @Bean
-    public JpaItemWriter<ChannelRule> writer(final DataSource dataSource) {
-        return new JpaItemWriterBuilder<ChannelRule>()
-                .entityManagerFactory(primaryEntityManagerFactory)
+    public JsonFileItemWriter<ChannelRule> writer() throws MalformedURLException {
+        return new JsonFileItemWriterBuilder<ChannelRule>()
+                .append(true)
+                .encoding("UTF-8")
+                .lineSeparator("\n")
+                .name("valueWriter")
+                .jsonObjectMarshaller(new JacksonJsonObjectMarshaller<ChannelRule>())
+                .resource(new FileUrlResource("/home/hugh/桌面/value.txt"))
                 .build();
     }
 
     @Bean
     public Job importVoltageJob(NotificationListener listener, Step step1) {
-        return jobBuilderFactory.get("importVoltageJob")
+        return jobBuilderFactory.get("importChannelJob")
                 .incrementer(new RunIdIncrementer())
                 .listener(listener)
                 .flow(step1)
@@ -100,9 +110,10 @@ public class BatchConfig {
                 .build();
     }
 
-    @Bean
-    public Step step1(JpaItemWriter<ChannelRule> writer) {
+    @Bean("step1")
+    public Step step1(JsonFileItemWriter<ChannelRule> writer) {
         return stepBuilderFactory.get("step1")
+//                .transactionManager(primaryTransactionManager)
                 .<ChannelFileDto, ChannelRule> chunk(10)
                 .reader(flatFileItemReader())
                 .processor(channelRuleProcessor)

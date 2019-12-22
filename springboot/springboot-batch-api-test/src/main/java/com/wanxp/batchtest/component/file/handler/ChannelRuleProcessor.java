@@ -33,7 +33,7 @@ public class ChannelRuleProcessor implements ItemProcessor<ChannelFileDto, Chann
     public ChannelRule process(ChannelFileDto item) throws Exception {
         if (item != null && "*".equals(item.getMark()))
             return null;
-        Channel channel = channelRepository.getByName(item.getServiceName());
+        Channel channel = channelRepository.getByCode(item.getServiceCode());
         if (channel == null)
             return null;
         ChannelRule channelRule = ChannelRule.builder()

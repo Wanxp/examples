@@ -22,5 +22,5 @@ public class Constant {
 
     public static final String CHANNEL_FILE_ITEM_READER = "channelFileItemReader";
 
-    public static final String CSV_COLUMN_SPILIT = ",";
+    public static final String CSV_COLUMN_SPILIT = ";";
 }
