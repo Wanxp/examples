@@ -1,0 +1,12 @@
+    fileType;文件类型;"1=Packing List装箱单，
+2=Invoice商业发票，
+3=Bond保证金，
+4=POA客户授权委托书，
+5=报关单
+6=合同
+7=AMS
+8=ISF";INTEGER;;N;"自抬头需要：
+1，2，3，4，5，6（深圳出口的自抬头卖家需要合同）7，8
+非自抬头需要：
+1，2"
+    filePath;文件路径;文件在该SFTP下的路径;VARCHAR;100;Y;
