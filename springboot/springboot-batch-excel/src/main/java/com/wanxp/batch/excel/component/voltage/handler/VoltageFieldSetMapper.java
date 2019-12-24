@@ -1,11 +1,10 @@
-package com.wanxp.batch.excel.component;
+package com.wanxp.batch.excel.component.voltage.handler;
 
 import com.wanxp.batch.excel.entity.Voltage;
 import org.springframework.batch.item.file.mapping.FieldSetMapper;
 import org.springframework.batch.item.file.transform.FieldSet;
-import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class VoltageFieldSetMapper implements FieldSetMapper<Voltage> {
 
     @Override
