@@ -14,6 +14,7 @@ public class BeanPropertyLineAggregator implements LineAggregator<BeanProperty> 
             if (VARCHAR.equals(getByTypeName(item.getTypeName()))) {
                 stringBuilder.append("\t@NotBlank\n");
             } else if (LIST.equals(getByTypeName(item.getTypeName()))) {
+                stringBuilder.append("\t@Valid\n");
                 stringBuilder.append("\t@NotEmpty\n");
             } else {
                 stringBuilder.append("\t@NotNull\n");
