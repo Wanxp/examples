@@ -10,7 +10,10 @@ public class BeanPropertyLineAggregator implements LineAggregator<BeanProperty> 
     @Override
     public String aggregate(BeanProperty item) {
         StringBuilder stringBuilder = new StringBuilder();
-        if (item.isRequired()) {
+        if (LIST.equals(getByTypeName(item.getTypeName()))) {
+            stringBuilder.append("\t@Valid\n");
+            stringBuilder.append("\t@NotEmpty\n");
+        } else if (item.isRequired()) {
             if (VARCHAR.equals(getByTypeName(item.getTypeName()))) {
                 stringBuilder.append("\t@NotBlank\n");
             } else if (LIST.equals(getByTypeName(item.getTypeName()))) {
