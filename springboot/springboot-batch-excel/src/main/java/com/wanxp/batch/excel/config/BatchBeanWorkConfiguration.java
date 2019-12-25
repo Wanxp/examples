@@ -5,7 +5,7 @@ import com.wanxp.batch.excel.component.bean.handler.BeanPropertyLineAggregator;
 import com.wanxp.batch.excel.component.bean.handler.BeanPropertyProcessor;
 import com.wanxp.batch.excel.component.bean.handler.BeanPropertySetMapper;
 import com.wanxp.batch.excel.entity.BeanProperty;
-import com.wanxp.batch.excel.model.dto.DataBaseBeanDto;
+import com.wanxp.batch.excel.model.dto.BeanPropertyDto;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
@@ -39,24 +39,25 @@ public class BatchBeanWorkConfiguration {
     @Autowired
     public StepBuilderFactory stepBuilderFactory;
 
-    public FlatFileItemReader<DataBaseBeanDto> reader() throws MalformedURLException {
-        return new FlatFileItemReaderBuilder<DataBaseBeanDto>()
+    public FlatFileItemReader<BeanPropertyDto> reader() throws MalformedURLException {
+        return new FlatFileItemReaderBuilder<BeanPropertyDto>()
                 .name("beanItemReader")
-                .resource(new FileUrlResource("/home/wanxp/temp/flu/cfs/input/BoxDto.csv"))
+//                .resource(new FileUrlResource("/home/wanxp/temp/flu/cfs/input/boxDto.csv"))
 //                .resource(new FileUrlResource("/home/wanxp/temp/flu/cfs/input/orderDto.csv"))
-//                .resource(new FileUrlResource("/home/wanxp/temp/flu/cfs/input/ProductDto.csv"))
+//                .resource(new FileUrlResource("/home/wanxp/temp/flu/cfs/input/productDto.csv"))
+                .resource(new FileUrlResource("/home/wanxp/temp/flu/cfs/input/fileDto.csv"))
                 .delimited()
                 .names(COLUMNS)
                 .lineMapper(lineMapper())
-                .fieldSetMapper(new BeanWrapperFieldSetMapper<DataBaseBeanDto>() {{
-                    setTargetType(DataBaseBeanDto.class);
+                .fieldSetMapper(new BeanWrapperFieldSetMapper<BeanPropertyDto>() {{
+                    setTargetType(BeanPropertyDto.class);
                 }})
                 .build();
     }
 
-    public LineMapper<DataBaseBeanDto> lineMapper() {
+    public LineMapper<BeanPropertyDto> lineMapper() {
 
-        final DefaultLineMapper<DataBaseBeanDto> defaultLineMapper = new DefaultLineMapper<>();
+        final DefaultLineMapper<BeanPropertyDto> defaultLineMapper = new DefaultLineMapper<>();
         final DelimitedLineTokenizer lineTokenizer = new DelimitedLineTokenizer();
         lineTokenizer.setDelimiter(";");
         lineTokenizer.setStrict(false);
@@ -86,7 +87,7 @@ public class BatchBeanWorkConfiguration {
                 .lineSeparator("\n")
                 .name("valueWriter")
                 .lineAggregator(beanPropertyLineAggregator())
-                .resource(new FileUrlResource("/home/wanxp/temp/flu/cfs/out/output.txt"))
+                .resource(new FileUrlResource("/home/wanxp/temp/flu/cfs/output/output.txt"))
                 .build();
     }
 
@@ -102,7 +103,7 @@ public class BatchBeanWorkConfiguration {
 
     public Step beanJobStep1() throws MalformedURLException {
         return stepBuilderFactory.get("beanJobStep1")
-                .<DataBaseBeanDto, BeanProperty>chunk(10)
+                .<BeanPropertyDto, BeanProperty>chunk(10)
                 .reader(reader())
                 .processor(beanPropertyProcessor())
                 .writer(writer())

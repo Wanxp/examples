@@ -3,7 +3,7 @@ package com.wanxp.batch.excel.model.dto;
 import lombok.Data;
 
 @Data
-public class DataBaseBeanDto {
+public class BeanPropertyDto {
     private String fieldName;
     private String fieldCNName;
     private String description;

@@ -38,7 +38,13 @@ public class BeanPropertyLineAggregator implements LineAggregator<BeanProperty> 
 
             stringBuilder.append(", notes = \"");
             stringBuilder.append(!StringUtils.isEmpty(item.getRemark()) ? item.getRemark() : "");
-            stringBuilder.append(item.getMaxLength() != null ? "，最大长度" + item.getMaxLength() : "").append("\"");
+            if (item.getMaxLength() != null && item.getMaxLength2() == null) {
+                stringBuilder.append("，最大长度" + item.getMaxLength()).append("\"");
+            } else if (item.getMaxLength() != null && item.getMaxLength2() != null) {
+                stringBuilder.append("，整数小数位数为(").append(item.getMaxLength()).append(",").append(item.getMaxLength2()).append(")\"");
+            } else {
+                stringBuilder.append("\"");
+            }
         }
         stringBuilder.append(")\n");
         stringBuilder.append("\tprivate ").append(item.getTypeName()).append(" ").append(item.getField()).append(";\n");

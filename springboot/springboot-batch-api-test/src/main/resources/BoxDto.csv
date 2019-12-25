@@ -1,8 +1,0 @@
-    boxNo;箱号;箱号;VARCHAR;50;Y;
-    boxLength;箱长;箱子长度;DECIMAL;（5,1）;Y;
-    boxHeight;箱高;箱子高度;DECIMAL;（5,1）;Y;
-    boxWidth;箱宽;箱子宽度;DECIMAL;（5,1）;Y;
-    dimensionUnit;长度单位;长度单位（cm）;VARCHAR;10;Y;默认传输为CM
-    boxGrossWeight;箱毛重;整箱货物毛重;DECIMAL;（8,3）;Y;
-    weightUnit;重量单位;重量单位（kg）;VARCHAR;10;Y;默认传输为KG
-    productList;商品信息;一个箱子有多种商品;LIST;;;
