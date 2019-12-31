@@ -7,6 +7,7 @@ public class IssueHelper {
 
     /**
      * 获取完成率
+     *
      * @param issue
      * @return
      */

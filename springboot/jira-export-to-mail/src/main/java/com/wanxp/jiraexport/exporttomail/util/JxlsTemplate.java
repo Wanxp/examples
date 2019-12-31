@@ -25,7 +25,9 @@ public class JxlsTemplate {
         } catch (FileNotFoundException e) {
             log.error("jxlsTemplate template error");
         }
-    };
+    }
+
+    ;
 
     /**
      * 使用JxlsTemplate.class.getResourceAsStream load 模板
@@ -56,6 +58,7 @@ public class JxlsTemplate {
         }
         processTemplate(in, out, params);
     }
+
     /**
      * @param templateStream excel模板流
      * @param out            生成excel写入的输出流

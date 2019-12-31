@@ -1,4 +1,5 @@
 package com.wanxp.jiraexport.exporttomail.config;
+
 import org.quartz.spi.TriggerFiredBundle;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.context.ApplicationContext;

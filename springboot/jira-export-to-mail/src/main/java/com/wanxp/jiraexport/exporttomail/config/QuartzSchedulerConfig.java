@@ -24,7 +24,7 @@ public class QuartzSchedulerConfig {
 
     @Autowired
     private ApplicationContext applicationContext;
-     
+
     @Autowired
     private TriggerListner triggerListner;
 
@@ -33,7 +33,7 @@ public class QuartzSchedulerConfig {
 
     @Autowired
     private QuartzProperties quartzProperties;
-    
+
     /**
      * create scheduler
      */
@@ -48,15 +48,13 @@ public class QuartzSchedulerConfig {
         //Register listeners to get notification on Trigger misfire etc
         factory.setGlobalTriggerListeners(triggerListner);
         factory.setGlobalJobListeners(jobsListener);
-        
+
         AutowiringSpringBeanJobFactory jobFactory = new AutowiringSpringBeanJobFactory();
         jobFactory.setApplicationContext(applicationContext);
         factory.setJobFactory(jobFactory);
-        
+
         return factory;
     }
- 
 
- 
-  
+
 }

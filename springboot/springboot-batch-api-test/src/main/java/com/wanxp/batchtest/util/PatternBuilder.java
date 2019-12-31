@@ -52,7 +52,7 @@ public class PatternBuilder {
         Matcher matcher = pattern.matcher(patternValue);
         List<String> result = new ArrayList<>();
         if (matcher.find()) {
-            for (int i = 1;i < matcher.groupCount();i++) {
+            for (int i = 1; i < matcher.groupCount(); i++) {
                 result.add(matcher.group(i));
             }
         }

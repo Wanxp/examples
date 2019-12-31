@@ -19,7 +19,6 @@ import java.util.regex.Pattern;
 public class ChannelRuleDimensionProcessor implements ChannelPropertyProcessor {
 
 
-
     public static final Set<String> LENGTH_MIN_PATTERN = new HashSet<>(Arrays.asList(
             PatternBuilder.patternBuilder("最小尺寸：").includeGroup(DIGITAL).include(SPACE).includeGroup(SIZE_UNIT).include(SPACE).include("x").include(SPACE)
                     .include(DIGITAL).include(SPACE).include(SIZE_UNIT).include(SPACE).include("x").include(SPACE).include(DIGITAL).include(SPACE).include(SIZE_UNIT).build(),
@@ -38,7 +37,7 @@ public class ChannelRuleDimensionProcessor implements ChannelPropertyProcessor {
 
     public static final Set<String> WIDTH_MIN_PATTERN = new HashSet<>(Arrays.asList(
             PatternBuilder.patternBuilder("最小尺寸：").include(DIGITAL).include(SPACE).include(SIZE_UNIT).include(SPACE).include("x").include(SPACE)
-        .includeGroup(DIGITAL).include(SPACE).includeGroup(SIZE_UNIT).include(SPACE).include("x").include(SPACE).include(DIGITAL).include(SPACE).include(SIZE_UNIT).build(),
+                    .includeGroup(DIGITAL).include(SPACE).includeGroup(SIZE_UNIT).include(SPACE).include("x").include(SPACE).include(DIGITAL).include(SPACE).include(SIZE_UNIT).build(),
             PatternBuilder.patternBuilder("长×宽×高 = ").include(DIGITAL).include(SPACE).include(SIZE_UNIT).include(SPACE).include("x").include(SPACE)
                     .includeGroup(DIGITAL).include(SPACE).includeGroup(SIZE_UNIT).include(SPACE).include("x").include(SPACE).include(DIGITAL).include(SPACE).include(SIZE_UNIT).build()
 
@@ -51,7 +50,6 @@ public class ChannelRuleDimensionProcessor implements ChannelPropertyProcessor {
                     .includeGroup(DIGITAL).include(SPACE).includeGroup(SIZE_UNIT).include(SPACE).include("x").include(SPACE).include(DIGITAL).include(SPACE).include(SIZE_UNIT).build()
 
     ));
-
 
 
     public static final Set<String> HEIGHT_MIN_PATTERN = new HashSet<>(Arrays.asList(
@@ -71,9 +69,6 @@ public class ChannelRuleDimensionProcessor implements ChannelPropertyProcessor {
     ));
 
 
-
-
-
     public static final Set<String> GIRTH_MAX_PATTERN = new HashSet<>(Arrays.asList(
             PatternBuilder.patternBuilder("最大围长 \\(宽\\+高）×2 ").include(SMALL).includeGroup(DIGITAL).includeGroup(SIZE_UNIT).build()
     ));
@@ -86,7 +81,7 @@ public class ChannelRuleDimensionProcessor implements ChannelPropertyProcessor {
     public static final Set<String> L_MIN_S_MAX_PATTERN = new HashSet<>(Arrays.asList(
             PatternBuilder.patternBuilder("长\\+最小面周长").include(SMALL).includeGroup(DIGITAL).includeGroup(SIZE_UNIT).build()));
     public static final Set<String> LONG_MAX_PATTERN = new HashSet<>(Arrays.asList(PatternBuilder.patternBuilder("最长单边").include(SMALL).includeGroup(DIGITAL).includeGroup(SIZE_UNIT).build(),
-             PatternBuilder.patternBuilder("单边长").include(SMALL).includeGroup(DIGITAL).includeGroup(SIZE_UNIT).build(),
+            PatternBuilder.patternBuilder("单边长").include(SMALL).includeGroup(DIGITAL).includeGroup(SIZE_UNIT).build(),
             PatternBuilder.patternBuilder("最长边").include(SMALL).includeGroup(DIGITAL).includeGroup(SIZE_UNIT).build()
     ));
 

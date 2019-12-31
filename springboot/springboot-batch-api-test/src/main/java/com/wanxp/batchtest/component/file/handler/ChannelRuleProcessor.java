@@ -27,7 +27,7 @@ public class ChannelRuleProcessor implements ItemProcessor<ChannelFileDto, Chann
     private ChannelRepository channelRepository;
 
     @Autowired
-    private ChannelRuleDimensionProcessor channelRuleDimensionProcessor ;
+    private ChannelRuleDimensionProcessor channelRuleDimensionProcessor;
 
     @Override
     public ChannelRule process(ChannelFileDto item) throws Exception {
@@ -66,6 +66,7 @@ public class ChannelRuleProcessor implements ItemProcessor<ChannelFileDto, Chann
         channelRule.setBagWeightMax(sizeDto.getValue());
         channelRule.setBagWeightUnit(sizeDto.getUnit());
     }
+
     /**
      * 处理 大袋重量
      *
@@ -83,7 +84,7 @@ public class ChannelRuleProcessor implements ItemProcessor<ChannelFileDto, Chann
                         .include(SPACE)
                         .includeGroup(CURRENCY)
                         .build()
-                );
+        );
         channelRule.setBagWeightMax(sizeDto.getValue());
         channelRule.setBagWeightUnit(sizeDto.getUnit());
     }
@@ -99,11 +100,11 @@ public class ChannelRuleProcessor implements ItemProcessor<ChannelFileDto, Chann
         if (StringUtils.isEmpty(incoterm))
             return;
         List<String> incoterms = PatternBuilder.patternBuilder("Value")
-                        .include(SMALL)
-                        .includeGroup(DIGITAL)
-                        .include(SPACE)
-                        .includeGroup(CURRENCY)
-                        .allTouchList(incoterm);
+                .include(SMALL)
+                .includeGroup(DIGITAL)
+                .include(SPACE)
+                .includeGroup(CURRENCY)
+                .allTouchList(incoterm);
         channelRule.setIncoterm(incoterms);
     }
 
@@ -126,6 +127,7 @@ public class ChannelRuleProcessor implements ItemProcessor<ChannelFileDto, Chann
         channelRule.setWeightMax(sizeDto.getValue());
         channelRule.setWeightUnit("kg");
     }
+
     /**
      * 处理 重量
      *

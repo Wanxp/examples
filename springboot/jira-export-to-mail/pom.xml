@@ -36,10 +36,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-quartz</artifactId>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-security</artifactId>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-security</artifactId>-->
+        <!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -123,32 +123,28 @@
             </exclusions>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.atlassian.jira/jira-api -->
-<!--        <dependency>-->
-<!--            <groupId>com.atlassian.jira</groupId>-->
-<!--            <artifactId>jira-api</artifactId>-->
-<!--            <version>1001.0.0-QR20160421190220</version>-->
-<!--            <scope>provided</scope>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.atlassian.jira</groupId>-->
+        <!--            <artifactId>jira-api</artifactId>-->
+        <!--            <version>1001.0.0-QR20160421190220</version>-->
+        <!--            <scope>provided</scope>-->
+        <!--        </dependency>-->
 
         <!-- https://mvnrepository.com/artifact/com.atlassian.jira/jira-core -->
-<!--        <dependency>-->
-<!--            <groupId>com.atlassian.jira</groupId>-->
-<!--            <artifactId>jira-core</artifactId>-->
-<!--            <version>8.5.0</version>-->
-<!--            <scope>provided</scope>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.atlassian.jira</groupId>-->
+        <!--            <artifactId>jira-core</artifactId>-->
+        <!--            <version>8.5.0</version>-->
+        <!--            <scope>provided</scope>-->
+        <!--        </dependency>-->
 
 
         <!-- https://mvnrepository.com/artifact/com.atlassian.jira/jira-rest-java-client-core -->
-<!--        <dependency>-->
-<!--            <groupId>com.atlassian.jira</groupId>-->
-<!--            <artifactId>jira-rest-java-client-core</artifactId>-->
-<!--            <version>5.1.6</version>-->
-<!--        </dependency>-->
-
-
-
-
+        <!--        <dependency>-->
+        <!--            <groupId>com.atlassian.jira</groupId>-->
+        <!--            <artifactId>jira-rest-java-client-core</artifactId>-->
+        <!--            <version>5.1.6</version>-->
+        <!--        </dependency>-->
 
 
     </dependencies>

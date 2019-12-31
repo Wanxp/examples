@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 public class DataSourceConfig {
 
     @Autowired
-    private DataSourceProperties  dataSourceProperties;
+    private DataSourceProperties dataSourceProperties;
 
     @Bean
     public DataSource dataSource() {

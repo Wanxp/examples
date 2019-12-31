@@ -34,6 +34,7 @@ public class DevWeeklyJobExporter {
 
     /**
      * 导出
+     *
      * @param outputStream
      * @param parameters
      * @throws IOException
@@ -51,6 +52,7 @@ public class DevWeeklyJobExporter {
 
     /**
      * 下周数据构建
+     *
      * @param parameters
      * @return
      */
@@ -63,6 +65,7 @@ public class DevWeeklyJobExporter {
 
     /**
      * 本周数据构建
+     *
      * @param parameters
      * @return
      */
@@ -75,18 +78,19 @@ public class DevWeeklyJobExporter {
 
     /**
      * 数据转换issue -> excelData
+     *
      * @param issues
      * @return
      */
     private List<WeekJobDetail> convertIssueToWeekJobDetail(List<Issue> issues) {
         if (!CollectionUtils.isEmpty(issues)) {
-            return issues.stream().map(issue->{
-               WeekJobDetail weekJobDetail = new WeekJobDetail();
-               weekJobDetail.setId(issue.getKey());
-               weekJobDetail.setTitle(issue.getSummary());
-               weekJobDetail.setDateOfHeadLine(issue.getDueDate() != null ? issue.getDueDate().toDate() : null);
-               weekJobDetail.setDateOfComplete(issue.getDueDate() != null ? issue.getDueDate().toDate() : null);
-               return weekJobDetail;
+            return issues.stream().map(issue -> {
+                WeekJobDetail weekJobDetail = new WeekJobDetail();
+                weekJobDetail.setId(issue.getKey());
+                weekJobDetail.setTitle(issue.getSummary());
+                weekJobDetail.setDateOfHeadLine(issue.getDueDate() != null ? issue.getDueDate().toDate() : null);
+                weekJobDetail.setDateOfComplete(issue.getDueDate() != null ? issue.getDueDate().toDate() : null);
+                return weekJobDetail;
             }).collect(Collectors.toList());
         }
         return new ArrayList<>();

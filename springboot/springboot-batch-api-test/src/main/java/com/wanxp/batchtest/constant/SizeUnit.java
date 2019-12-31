@@ -1,10 +1,10 @@
 package com.wanxp.batchtest.constant;
 
 public enum SizeUnit {
-    MM("mm", "毫米","mm"),
-    CM("cm", "厘米","cm"),
-    M("m", "米","m"),
-    M3("m^3", "立方米","m³");
+    MM("mm", "毫米", "mm"),
+    CM("cm", "厘米", "cm"),
+    M("m", "米", "m"),
+    M3("m^3", "立方米", "m³");
     private String type;
     private String cnName;
     private String mathName;

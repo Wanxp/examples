@@ -1,6 +1,5 @@
 package com.wanxp.jiraexport.exporttomail.manager;
 
-import com.wanxp.jiraexport.exporttomail.JiraExportToMailApplication;
 import com.wanxp.jiraexport.exporttomail.job.SendWorkStatusExcelJob;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,8 +24,6 @@ public class JiraDataManagerTests {
 //        jiraDataManager.getIssuesByJql("status changed after -1w by currentUser()");
         sendWorkStatusExcelJob.sendWorkStatusExcelTask();
     }
-
-
 
 
 }

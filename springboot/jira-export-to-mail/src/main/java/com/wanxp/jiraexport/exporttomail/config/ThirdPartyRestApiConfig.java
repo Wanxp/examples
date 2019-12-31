@@ -27,6 +27,7 @@ public class ThirdPartyRestApiConfig {
 
     /**
      * restTemplate
+     *
      * @param factory
      * @return
      */
@@ -37,6 +38,7 @@ public class ThirdPartyRestApiConfig {
 
     /**
      * ClientHttpRequestFactory
+     *
      * @return
      */
     @Bean
@@ -50,6 +52,7 @@ public class ThirdPartyRestApiConfig {
 
     /**
      * 创建jira请求客户端工厂类
+     *
      * @return
      */
     @Bean
@@ -59,6 +62,7 @@ public class ThirdPartyRestApiConfig {
 
     /**
      * 创建jira请求客户端
+     *
      * @param jiraRestClientFactory
      * @return
      */

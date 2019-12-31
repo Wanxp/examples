@@ -3,7 +3,7 @@ package com.wanxp.jiraexport.exporttomail.exception;
 /**
  * 模板文件未找到
  */
-public class TemplateNotFoundException extends RuntimeException{
+public class TemplateNotFoundException extends RuntimeException {
     public TemplateNotFoundException() {
     }
 

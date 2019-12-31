@@ -7,6 +7,8 @@ public interface Result {
     public static final String PLATFORM_RESULT_FAILED_MESSAGE = "failed";
 
     int getCode();
+
     String getMsg();
+
     Object getData();
 }

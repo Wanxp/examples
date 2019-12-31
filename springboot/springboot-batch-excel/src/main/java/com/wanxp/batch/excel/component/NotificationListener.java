@@ -11,7 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
-public class NotificationListener extends JobExecutionListenerSupport{
+public class NotificationListener extends JobExecutionListenerSupport {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(NotificationListener.class);
 
@@ -24,7 +24,7 @@ public class NotificationListener extends JobExecutionListenerSupport{
 
     @Override
     public void afterJob(final JobExecution jobExecution) {
-        if(jobExecution.getStatus() == BatchStatus.COMPLETED) {
+        if (jobExecution.getStatus() == BatchStatus.COMPLETED) {
             LOGGER.info("!!! JOB FINISHED! Time to verify the results");
 
             jdbcTemplate.query("SELECT volt, time FROM voltage",

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Slf4j
 public class TracePerformanceAspect {
-    @Around ("execution(* com.wanxp.batch.excel..*.*(..)))")
+    @Around("execution(* com.wanxp.batch.excel..*.*(..)))")
     public Object logTracePerformanceAspect(ProceedingJoinPoint joinPoint) throws Throwable {
 
         MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();

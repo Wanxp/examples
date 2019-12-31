@@ -3,7 +3,7 @@ package com.wanxp.jiraexport.exporttomail.dto;
 import lombok.Data;
 
 @Data
-public class PlatformResult implements Result{
+public class PlatformResult implements Result {
     private int code;
     private String msg;
     private Object data;
@@ -38,36 +38,36 @@ public class PlatformResult implements Result{
         return new PlatformResult();
     }
 
-    public static  PlatformResult success(Object data) {
+    public static PlatformResult success(Object data) {
         return new PlatformResult(data);
     }
 
-    public static  PlatformResult success(String message, Object data) {
+    public static PlatformResult success(String message, Object data) {
         return new PlatformResult(message, data);
     }
 
 
-    public static  PlatformResult fail() {
+    public static PlatformResult fail() {
         return new PlatformResult(PLATFORM_RESULT_FAILED_CODE, PLATFORM_RESULT_FAILED_MESSAGE, null);
     }
 
-    public static  PlatformResult fail(Object data) {
+    public static PlatformResult fail(Object data) {
         return new PlatformResult(PLATFORM_RESULT_FAILED_CODE, PLATFORM_RESULT_FAILED_MESSAGE, data);
     }
 
-    public static  PlatformResult fail(String msg) {
+    public static PlatformResult fail(String msg) {
         return new PlatformResult(PLATFORM_RESULT_FAILED_CODE, msg);
     }
 
-    public static  PlatformResult fail(int code) {
+    public static PlatformResult fail(int code) {
         return new PlatformResult(code, PLATFORM_RESULT_FAILED_MESSAGE);
     }
 
-    public static  PlatformResult fail(int code, String msg) {
+    public static PlatformResult fail(int code, String msg) {
         return new PlatformResult(code, msg);
     }
 
-    public static  PlatformResult fail(int code, String msg, Object data) {
+    public static PlatformResult fail(int code, String msg, Object data) {
         return new PlatformResult(code, msg, data);
     }
 

@@ -19,11 +19,12 @@ import java.util.concurrent.ExecutionException;
 @Slf4j
 public class JiraDataManager {
 
-   @Autowired
+    @Autowired
     private JiraRestClient jiraRestClient;
 
     /**
      * 通过jql获取issue列表
+     *
      * @param jql
      * @return
      * @throws ExecutionException
@@ -35,7 +36,7 @@ public class JiraDataManager {
         if (searchResult == null) {
             return new ArrayList<>();
         }
-        return (List)searchResult.getIssues();
+        return (List) searchResult.getIssues();
     }
 
 }
