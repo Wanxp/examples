@@ -34,77 +34,77 @@ import static com.wanxp.batchtest.constant.Constant.CSV_COLUMN_SPILIT;
 public class BatchConfig {
 
 
-    @Autowired
-    private JobBuilderFactory jobBuilderFactory;
+	@Autowired
+	private JobBuilderFactory jobBuilderFactory;
 
-    @Autowired
-    private StepBuilderFactory stepBuilderFactory;
+	@Autowired
+	private StepBuilderFactory stepBuilderFactory;
 
-    @Autowired
-    private ChannelRuleSetMapper channelRuleSetMapper;
+	@Autowired
+	private ChannelRuleSetMapper channelRuleSetMapper;
 
-    @Autowired
-    private LineMapper channelFileDtoLineMapper;
+	@Autowired
+	private LineMapper channelFileDtoLineMapper;
 
-    @Autowired
-    private ItemProcessor channelRuleProcessor;
+	@Autowired
+	private ItemProcessor channelRuleProcessor;
 
 
-    @Bean
-    public FlatFileItemReader<ChannelFileDto> flatFileItemReader() {
-        return new FlatFileItemReaderBuilder<ChannelFileDto>()
-                .name(CHANNEL_FILE_ITEM_READER)
-                .resource(new ClassPathResource("product1.csv"))
-                .delimited()
-                .names()
-                .lineMapper(channelFileDtoLineMapper)
-                .fieldSetMapper(new BeanWrapperFieldSetMapper() {{
-                    setTargetType(ChannelFileDto.class);
-                }})
-                .build();
-    }
+	@Bean
+	public FlatFileItemReader<ChannelFileDto> flatFileItemReader() {
+		return new FlatFileItemReaderBuilder<ChannelFileDto>()
+				.name(CHANNEL_FILE_ITEM_READER)
+				.resource(new ClassPathResource("product1.csv"))
+				.delimited()
+				.names()
+				.lineMapper(channelFileDtoLineMapper)
+				.fieldSetMapper(new BeanWrapperFieldSetMapper() {{
+					setTargetType(ChannelFileDto.class);
+				}})
+				.build();
+	}
 
-    @Bean
-    public LineMapper<ChannelFileDto> channelFileDtoLineMapper() {
-        final DefaultLineMapper<ChannelFileDto> defaultLineMapper = new DefaultLineMapper<>();
-        final DelimitedLineTokenizer delimitedLineTokenizer = new DelimitedLineTokenizer();
-        delimitedLineTokenizer.setDelimiter(CSV_COLUMN_SPILIT);
-        delimitedLineTokenizer.setStrict(false);
-        defaultLineMapper.setLineTokenizer(delimitedLineTokenizer);
-        defaultLineMapper.setFieldSetMapper(channelRuleSetMapper);
-        return defaultLineMapper;
-    }
+	@Bean
+	public LineMapper<ChannelFileDto> channelFileDtoLineMapper() {
+		final DefaultLineMapper<ChannelFileDto> defaultLineMapper = new DefaultLineMapper<>();
+		final DelimitedLineTokenizer delimitedLineTokenizer = new DelimitedLineTokenizer();
+		delimitedLineTokenizer.setDelimiter(CSV_COLUMN_SPILIT);
+		delimitedLineTokenizer.setStrict(false);
+		defaultLineMapper.setLineTokenizer(delimitedLineTokenizer);
+		defaultLineMapper.setFieldSetMapper(channelRuleSetMapper);
+		return defaultLineMapper;
+	}
 
-    @Bean
-    public JsonFileItemWriter<ChannelRule> writer() throws MalformedURLException {
-        return new JsonFileItemWriterBuilder<ChannelRule>()
-                .append(true)
-                .encoding("UTF-8")
-                .lineSeparator("\n")
-                .name("valueWriter")
-                .jsonObjectMarshaller(new JacksonJsonObjectMarshaller<ChannelRule>())
-                .resource(new FileUrlResource("/home/hugh/桌面/value.txt"))
-                .build();
-    }
+	@Bean
+	public JsonFileItemWriter<ChannelRule> writer() throws MalformedURLException {
+		return new JsonFileItemWriterBuilder<ChannelRule>()
+				.append(true)
+				.encoding("UTF-8")
+				.lineSeparator("\n")
+				.name("valueWriter")
+				.jsonObjectMarshaller(new JacksonJsonObjectMarshaller<ChannelRule>())
+				.resource(new FileUrlResource("/home/hugh/桌面/value.txt"))
+				.build();
+	}
 
-    @Bean
-    public Job importVoltageJob(NotificationListener listener, Step step1) {
-        return jobBuilderFactory.get("importChannelJob")
-                .incrementer(new RunIdIncrementer())
-                .listener(listener)
-                .flow(step1)
-                .end()
-                .build();
-    }
+	@Bean
+	public Job importVoltageJob(NotificationListener listener, Step step1) {
+		return jobBuilderFactory.get("importChannelJob")
+				.incrementer(new RunIdIncrementer())
+				.listener(listener)
+				.flow(step1)
+				.end()
+				.build();
+	}
 
-    @Bean("step1")
-    public Step step1(JsonFileItemWriter<ChannelRule> writer) {
-        return stepBuilderFactory.get("step1")
+	@Bean("step1")
+	public Step step1(JsonFileItemWriter<ChannelRule> writer) {
+		return stepBuilderFactory.get("step1")
 //                .transactionManager(primaryTransactionManager)
-                .<ChannelFileDto, ChannelRule>chunk(10)
-                .reader(flatFileItemReader())
-                .processor(channelRuleProcessor)
-                .writer(writer)
-                .build();
-    }
+				.<ChannelFileDto, ChannelRule>chunk(10)
+				.reader(flatFileItemReader())
+				.processor(channelRuleProcessor)
+				.writer(writer)
+				.build();
+	}
 }

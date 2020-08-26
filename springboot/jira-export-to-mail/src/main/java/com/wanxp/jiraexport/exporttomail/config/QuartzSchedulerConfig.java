@@ -19,42 +19,42 @@ import java.util.Properties;
 @Configuration
 public class QuartzSchedulerConfig {
 
-    @Autowired
-    private DataSource dataSource;
+	@Autowired
+	private DataSource dataSource;
 
-    @Autowired
-    private ApplicationContext applicationContext;
+	@Autowired
+	private ApplicationContext applicationContext;
 
-    @Autowired
-    private TriggerListner triggerListner;
+	@Autowired
+	private TriggerListner triggerListner;
 
-    @Autowired
-    private JobsListener jobsListener;
+	@Autowired
+	private JobsListener jobsListener;
 
-    @Autowired
-    private QuartzProperties quartzProperties;
+	@Autowired
+	private QuartzProperties quartzProperties;
 
-    /**
-     * create scheduler
-     */
-    @Bean
-    public SchedulerFactoryBean schedulerFactoryBean() throws IOException {
-        SchedulerFactoryBean factory = new SchedulerFactoryBean();
-        factory.setOverwriteExistingJobs(true);
-        factory.setDataSource(dataSource);
-        Properties properties = new Properties();
-        properties.putAll(quartzProperties.getProperties());
-        factory.setQuartzProperties(properties);
-        //Register listeners to get notification on Trigger misfire etc
-        factory.setGlobalTriggerListeners(triggerListner);
-        factory.setGlobalJobListeners(jobsListener);
+	/**
+	 * create scheduler
+	 */
+	@Bean
+	public SchedulerFactoryBean schedulerFactoryBean() throws IOException {
+		SchedulerFactoryBean factory = new SchedulerFactoryBean();
+		factory.setOverwriteExistingJobs(true);
+		factory.setDataSource(dataSource);
+		Properties properties = new Properties();
+		properties.putAll(quartzProperties.getProperties());
+		factory.setQuartzProperties(properties);
+		//Register listeners to get notification on Trigger misfire etc
+		factory.setGlobalTriggerListeners(triggerListner);
+		factory.setGlobalJobListeners(jobsListener);
 
-        AutowiringSpringBeanJobFactory jobFactory = new AutowiringSpringBeanJobFactory();
-        jobFactory.setApplicationContext(applicationContext);
-        factory.setJobFactory(jobFactory);
+		AutowiringSpringBeanJobFactory jobFactory = new AutowiringSpringBeanJobFactory();
+		jobFactory.setApplicationContext(applicationContext);
+		factory.setJobFactory(jobFactory);
 
-        return factory;
-    }
+		return factory;
+	}
 
 
 }

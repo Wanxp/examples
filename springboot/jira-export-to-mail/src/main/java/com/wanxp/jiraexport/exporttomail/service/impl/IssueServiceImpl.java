@@ -18,18 +18,18 @@ import java.util.concurrent.ExecutionException;
 @Slf4j
 public class IssueServiceImpl implements IssueService {
 
-    @Autowired
-    private JiraDataManager jiraDataManager;
+	@Autowired
+	private JiraDataManager jiraDataManager;
 
-    @Override
-    public List<Issue> getIssuesByJql(String jql) {
-        try {
-            return jiraDataManager.getIssuesByJql(jql);
-        } catch (ExecutionException e) {
-            log.error("queryDevLastWeekHandleIssue failed", e);
-        } catch (InterruptedException e) {
-            log.error("queryDevLastWeekHandleIssue failed", e);
-        }
-        return new ArrayList<>();
-    }
+	@Override
+	public List<Issue> getIssuesByJql(String jql) {
+		try {
+			return jiraDataManager.getIssuesByJql(jql);
+		} catch (ExecutionException e) {
+			log.error("queryDevLastWeekHandleIssue failed", e);
+		} catch (InterruptedException e) {
+			log.error("queryDevLastWeekHandleIssue failed", e);
+		}
+		return new ArrayList<>();
+	}
 }

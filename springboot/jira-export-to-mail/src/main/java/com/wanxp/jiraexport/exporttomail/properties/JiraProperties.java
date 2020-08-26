@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "jira")
 @Data
 public class JiraProperties {
-    private String uri;
-    private String username;
-    private String password;
+	private String uri;
+	private String username;
+	private String password;
 }

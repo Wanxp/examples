@@ -11,13 +11,13 @@ import org.springframework.stereotype.Service;
 @Service("dtsResultService")
 public class DTSResultServiceImpl implements DTSResultService {
 
-    @Autowired
-    private DTSResultRepository repository;
+	@Autowired
+	private DTSResultRepository repository;
 
-    @Override
-    public void save(DTSResultDTO result) {
-        DTSResult dtsResult = new DTSResult();
-        BeanUtils.copyProperties(result, dtsResult);
-        repository.save(dtsResult);
-    }
+	@Override
+	public void save(DTSResultDTO result) {
+		DTSResult dtsResult = new DTSResult();
+		BeanUtils.copyProperties(result, dtsResult);
+		repository.save(dtsResult);
+	}
 }

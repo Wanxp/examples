@@ -19,24 +19,24 @@ import java.util.concurrent.ExecutionException;
 @Slf4j
 public class JiraDataManager {
 
-    @Autowired
-    private JiraRestClient jiraRestClient;
+	@Autowired
+	private JiraRestClient jiraRestClient;
 
-    /**
-     * 通过jql获取issue列表
-     *
-     * @param jql
-     * @return
-     * @throws ExecutionException
-     * @throws InterruptedException
-     */
-    public List<Issue> getIssuesByJql(String jql) throws ExecutionException, InterruptedException {
-        Promise<SearchResult> issuePromise = jiraRestClient.getSearchClient().searchJql(jql);
-        SearchResult searchResult = issuePromise.get();
-        if (searchResult == null) {
-            return new ArrayList<>();
-        }
-        return (List) searchResult.getIssues();
-    }
+	/**
+	 * 通过jql获取issue列表
+	 *
+	 * @param jql
+	 * @return
+	 * @throws ExecutionException
+	 * @throws InterruptedException
+	 */
+	public List<Issue> getIssuesByJql(String jql) throws ExecutionException, InterruptedException {
+		Promise<SearchResult> issuePromise = jiraRestClient.getSearchClient().searchJql(jql);
+		SearchResult searchResult = issuePromise.get();
+		if (searchResult == null) {
+			return new ArrayList<>();
+		}
+		return (List) searchResult.getIssues();
+	}
 
 }

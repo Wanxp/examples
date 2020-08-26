@@ -1,11 +1,9 @@
 package com.wanxp.springbootsecurity.entity;
 
-import com.wanxp.springbootsecurity.validation.user.group.Registry;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
 
-import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 /**
@@ -15,28 +13,28 @@ import java.util.List;
 @Data
 public class User {
 
-    /**
-     * 邮箱
-     */
-    @Id
-    private String email;
-    /**
-     * 用户名
-     */
-    private String username;
-    /**
-     * 密码
-     */
-    private String password;
+	/**
+	 * 邮箱
+	 */
+	@Id
+	private String email;
+	/**
+	 * 用户名
+	 */
+	private String username;
+	/**
+	 * 密码
+	 */
+	private String password;
 
-    /**
-     * 是否有效
-     */
-    private boolean enabled;
+	/**
+	 * 是否有效
+	 */
+	private boolean enabled;
 
-    /**
-     * 角色IdList
-     */
-    private List<String> roleIdList;
+	/**
+	 * 角色IdList
+	 */
+	private List<String> roleIdList;
 
 }

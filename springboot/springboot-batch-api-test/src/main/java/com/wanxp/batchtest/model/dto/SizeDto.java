@@ -6,6 +6,6 @@ import java.math.BigDecimal;
 
 @Data
 public class SizeDto {
-    private BigDecimal value;
-    private String unit;
+	private BigDecimal value;
+	private String unit;
 }

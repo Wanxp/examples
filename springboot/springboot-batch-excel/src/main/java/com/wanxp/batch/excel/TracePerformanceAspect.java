@@ -11,23 +11,23 @@ import org.springframework.stereotype.Component;
 @Component
 @Slf4j
 public class TracePerformanceAspect {
-    @Around("execution(* com.wanxp.batch.excel..*.*(..)))")
-    public Object logTracePerformanceAspect(ProceedingJoinPoint joinPoint) throws Throwable {
+	@Around("execution(* com.wanxp.batch.excel..*.*(..)))")
+	public Object logTracePerformanceAspect(ProceedingJoinPoint joinPoint) throws Throwable {
 
-        MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
+		MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
 
-        //Get intercepted method details
-        String className = methodSignature.getDeclaringType().getSimpleName();
-        String methodName = methodSignature.getName();
+		//Get intercepted method details
+		String className = methodSignature.getDeclaringType().getSimpleName();
+		String methodName = methodSignature.getName();
 
-        long start = System.currentTimeMillis();
+		long start = System.currentTimeMillis();
 
-        Object result = joinPoint.proceed();
-        long end = System.currentTimeMillis();
+		Object result = joinPoint.proceed();
+		long end = System.currentTimeMillis();
 
-        //Log method execution time
-        log.info("Execution time of " + className + "." + methodName + " :: " + (end - start) + " ms");
+		//Log method execution time
+		log.info("Execution time of " + className + "." + methodName + " :: " + (end - start) + " ms");
 
-        return result;
-    }
+		return result;
+	}
 }

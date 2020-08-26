@@ -8,8 +8,6 @@
       <module fileurl="file://$PROJECT_DIR$/springboot/datasource/datasource.iml" filepath="$PROJECT_DIR$/springboot/datasource/datasource.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/examples.iml" filepath="$PROJECT_DIR$/.idea/examples.iml" />
       <module fileurl="file://$PROJECT_DIR$/base/javabase/javabase.iml" filepath="$PROJECT_DIR$/base/javabase/javabase.iml" />
-      <module fileurl="file://$PROJECT_DIR$/springboot/jira-export-to-mail/jira-export-to-mail.iml" filepath="$PROJECT_DIR$/springboot/jira-export-to-mail/jira-export-to-mail.iml" />
-      <module fileurl="file://$PROJECT_DIR$/thirdparty/jira-plugin/jira-plugin.iml" filepath="$PROJECT_DIR$/thirdparty/jira-plugin/jira-plugin.iml" />
       <module fileurl="file://$PROJECT_DIR$/thirdparty/postman/postman.iml" filepath="$PROJECT_DIR$/thirdparty/postman/postman.iml" />
       <module fileurl="file://$PROJECT_DIR$/springboot/spring-data-book/section-2-repository/section-2-repository.iml" filepath="$PROJECT_DIR$/springboot/spring-data-book/section-2-repository/section-2-repository.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring/spring.iml" filepath="$PROJECT_DIR$/spring/spring.iml" />
@@ -18,10 +16,11 @@
       <module fileurl="file://$PROJECT_DIR$/spring/spring-hibernate-4/spring-hibernate-4.iml" filepath="$PROJECT_DIR$/spring/spring-hibernate-4/spring-hibernate-4.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring/spring-mvc-3/spring-mvc-3-demo.iml" filepath="$PROJECT_DIR$/spring/spring-mvc-3/spring-mvc-3-demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring/spring-tx-3/spring-tx-3.iml" filepath="$PROJECT_DIR$/spring/spring-tx-3/spring-tx-3.iml" />
-      <module fileurl="file://$PROJECT_DIR$/springboot/springboot.iml" filepath="$PROJECT_DIR$/springboot/springboot.iml" />
       <module fileurl="file://$PROJECT_DIR$/springboot/springboot-batch-excel/springboot-batch-excel.iml" filepath="$PROJECT_DIR$/springboot/springboot-batch-excel/springboot-batch-excel.iml" />
       <module fileurl="file://$PROJECT_DIR$/springboot/springboot-batch-api-test/springboot-batch-test.iml" filepath="$PROJECT_DIR$/springboot/springboot-batch-api-test/springboot-batch-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/springboot/springboot-job-manager/springboot-job-manager.iml" filepath="$PROJECT_DIR$/springboot/springboot-job-manager/springboot-job-manager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot/springboot-kafka-demo/springboot-kafka-demo.iml" filepath="$PROJECT_DIR$/springboot/springboot-kafka-demo/springboot-kafka-demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot/springboot-mybatis/springboot-mybatis.iml" filepath="$PROJECT_DIR$/springboot/springboot-mybatis/springboot-mybatis.iml" />
       <module fileurl="file://$PROJECT_DIR$/springboot/springboot-security/springboot-security.iml" filepath="$PROJECT_DIR$/springboot/springboot-security/springboot-security.iml" />
       <module fileurl="file://$PROJECT_DIR$/springcloud/springcloud.iml" filepath="$PROJECT_DIR$/springcloud/springcloud.iml" />
       <module fileurl="file://$PROJECT_DIR$/thirdparty/thirdparty.iml" filepath="$PROJECT_DIR$/thirdparty/thirdparty.iml" />

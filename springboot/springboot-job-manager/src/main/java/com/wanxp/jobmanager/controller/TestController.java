@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("test")
 @Controller
 public class TestController extends BaseController {
-    @RequestMapping
-    @ResponseBody
-    public String test() {
-        return "test";
-    }
+	@RequestMapping
+	@ResponseBody
+	public String test() {
+		return "test";
+	}
 }

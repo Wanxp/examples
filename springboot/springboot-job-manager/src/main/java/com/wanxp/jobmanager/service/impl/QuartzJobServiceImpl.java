@@ -13,45 +13,45 @@ import java.util.List;
 @Service("quartzJobService")
 public class QuartzJobServiceImpl implements QuartzJobService {
 
-    @Autowired
-    private QuartzJobRepository repository;
+	@Autowired
+	private QuartzJobRepository repository;
 
-    @Override
-    public List<QuartzJob> findAll() {
-        return repository.findAll();
-    }
+	@Override
+	public List<QuartzJob> findAll() {
+		return repository.findAll();
+	}
 
-    @Transactional
-    @Override
-    public QuartzJob save(QuartzJob jobBean) {
-        return repository.save(jobBean);
-    }
+	@Transactional
+	@Override
+	public QuartzJob save(QuartzJob jobBean) {
+		return repository.save(jobBean);
+	}
 
-    @Override
-    public QuartzJob getOne(String uuid) {
-        return repository.getOne(uuid);
-    }
+	@Override
+	public QuartzJob getOne(String uuid) {
+		return repository.getOne(uuid);
+	}
 
-    @Transactional
-    @Override
-    public int modifyByIdAndTime(Date previousTime, Date nextTime, String uuid) {
-        return repository.modifyByIdAndTime(previousTime, nextTime, uuid);
-    }
+	@Transactional
+	@Override
+	public int modifyByIdAndTime(Date previousTime, Date nextTime, String uuid) {
+		return repository.modifyByIdAndTime(previousTime, nextTime, uuid);
+	}
 
-    @Override
-    public List<QuartzJob> findByJobStatus(String jobStatus) {
-        return repository.findByJobStatus(jobStatus);
-    }
+	@Override
+	public List<QuartzJob> findByJobStatus(String jobStatus) {
+		return repository.findByJobStatus(jobStatus);
+	}
 
-    @Override
-    public List<QuartzJob> findByJobStatusNot(String jobStatus) {
-        return repository.findByJobStatusNot(jobStatus);
-    }
+	@Override
+	public List<QuartzJob> findByJobStatusNot(String jobStatus) {
+		return repository.findByJobStatusNot(jobStatus);
+	}
 
-    @Transactional
-    @Override
-    public int modifyByStatus(String jobStatus, String uuid) {
-        return repository.modifyByStatus(jobStatus, uuid);
-    }
+	@Transactional
+	@Override
+	public int modifyByStatus(String jobStatus, String uuid) {
+		return repository.modifyByStatus(jobStatus, uuid);
+	}
 
 }

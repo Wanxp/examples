@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class JiraExportToMailApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(JiraExportToMailApplication.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(JiraExportToMailApplication.class, args);
+	}
 
 }

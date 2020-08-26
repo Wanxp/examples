@@ -16,11 +16,16 @@
         <option value="$PROJECT_DIR$/spring-cloud-service-restful-example/user-web-register/pom.xml" />
         <option value="$PROJECT_DIR$/spring-cloud-service-restful-example/user-service/pom.xml" />
         <option value="$PROJECT_DIR$/springboot-job-manager/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot/springboot-mybatis/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot/springboot-kafka-demo/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/spring-cloud-service-restful/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot/jira-export-to-mail/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot/pom.xml" />
       </set>
     </option>
   </component>

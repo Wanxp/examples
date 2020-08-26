@@ -4,12 +4,12 @@ import lombok.Data;
 
 @Data
 public class BeanPropertyDto {
-    private String fieldName;
-    private String fieldCNName;
-    private String description;
-    private String typeName;
-    private String maxLength;
-    private String requiredString;
-    private String remark;
-    private String example;
+	private String fieldName;
+	private String fieldCNName;
+	private String description;
+	private String typeName;
+	private String maxLength;
+	private String requiredString;
+	private String remark;
+	private String example;
 }

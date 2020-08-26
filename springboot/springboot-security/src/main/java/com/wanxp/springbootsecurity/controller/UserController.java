@@ -23,30 +23,30 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+	@Autowired
+	private UserService userService;
 
-    @RequestMapping(value = "/user/registration", method = RequestMethod.GET)
-    public String showRegistrationForm(WebRequest request, Model model) {
-        UserDto userDto = new UserDto();
-        model.addAttribute("user", userDto);
-        return "registration";
-    }
+	@RequestMapping(value = "/user/registration", method = RequestMethod.GET)
+	public String showRegistrationForm(WebRequest request, Model model) {
+		UserDto userDto = new UserDto();
+		model.addAttribute("user", userDto);
+		return "registration";
+	}
 
-    @RequestMapping(value = "/user/register", method = RequestMethod.POST)
-    public ModelAndView registerUserAccount(@ModelAttribute("user") @Validated(Registry.class) UserDto userDto,
-                                            BindingResult result, Errors errors) {
-        User registered = new User();
-        if (!result.hasErrors()) {
-            registered = userService.registerNewUserAccount(userDto);
-        }
-        if (registered == null) {
-            result.rejectValue("email", "message.regError");
-        }
-        if (result.hasErrors()) {
-            return new ModelAndView("registration", "user", userDto);
-        } else {
-            return new ModelAndView("successRegister", "user", userDto);
-        }
-    }
+	@RequestMapping(value = "/user/register", method = RequestMethod.POST)
+	public ModelAndView registerUserAccount(@ModelAttribute("user") @Validated(Registry.class) UserDto userDto,
+	                                        BindingResult result, Errors errors) {
+		User registered = new User();
+		if (!result.hasErrors()) {
+			registered = userService.registerNewUserAccount(userDto);
+		}
+		if (registered == null) {
+			result.rejectValue("email", "message.regError");
+		}
+		if (result.hasErrors()) {
+			return new ModelAndView("registration", "user", userDto);
+		} else {
+			return new ModelAndView("successRegister", "user", userDto);
+		}
+	}
 }

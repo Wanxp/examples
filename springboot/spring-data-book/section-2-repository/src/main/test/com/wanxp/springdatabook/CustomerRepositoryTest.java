@@ -18,11 +18,11 @@ import java.util.List;
 @Slf4j
 public class CustomerRepositoryTest {
 
-    @Autowired
-    private CustomerRepository customerRepository;
+	@Autowired
+	private CustomerRepository customerRepository;
 
-    @Test
-    public void testCumstomerRepository() {
-        List<Customer> customerRepository.findByLastName("tom", Sort.by(Sort.Direction.DESC, "findByLastName"));
-    }
+	@Test
+	public void testCumstomerRepository() {
+		List<Customer> customerRepository.findByLastName("tom", Sort.by(Sort.Direction.DESC, "findByLastName"));
+	}
 }

@@ -9,21 +9,21 @@ import java.util.List;
 public interface QuartzJobService {
 
 
-    List<QuartzJob> findAll();
+	List<QuartzJob> findAll();
 
-    @Transactional
-    QuartzJob save(QuartzJob jobBean);
+	@Transactional
+	QuartzJob save(QuartzJob jobBean);
 
-    QuartzJob getOne(String uuid);
+	QuartzJob getOne(String uuid);
 
-    @Transactional
-    int modifyByIdAndTime(Date previousTime, Date nextTime, String uuid);
+	@Transactional
+	int modifyByIdAndTime(Date previousTime, Date nextTime, String uuid);
 
-    List<QuartzJob> findByJobStatus(String jobStatus);
+	List<QuartzJob> findByJobStatus(String jobStatus);
 
-    List<QuartzJob> findByJobStatusNot(String jobStatus);
+	List<QuartzJob> findByJobStatusNot(String jobStatus);
 
-    @Transactional
-    int modifyByStatus(String jobStatus, String uuid);
+	@Transactional
+	int modifyByStatus(String jobStatus, String uuid);
 }
 

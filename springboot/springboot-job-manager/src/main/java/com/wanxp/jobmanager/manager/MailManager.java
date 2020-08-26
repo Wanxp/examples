@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class MailManager {
 
-    @Autowired
-    private JavaMailSender javaMailSender;
+	@Autowired
+	private JavaMailSender javaMailSender;
 
 }

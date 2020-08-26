@@ -10,16 +10,16 @@ import org.springframework.stereotype.Service;
 @Service("mailService")
 public class MailServiceImpl implements MailService {
 
-    @Autowired
-    private JavaMailSender javaMailSender;
+	@Autowired
+	private JavaMailSender javaMailSender;
 
-    @Override
-    public void send(MailDTO mailDTO) {
-        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-        simpleMailMessage.setTo(mailDTO.getReceivers().toArray(new String[]{}));
-        simpleMailMessage.setSubject(mailDTO.getSubject());
-        simpleMailMessage.setText(mailDTO.getContent());
-        simpleMailMessage.setFrom(mailDTO.getSender());
-        javaMailSender.send(simpleMailMessage);
-    }
+	@Override
+	public void send(MailDTO mailDTO) {
+		SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+		simpleMailMessage.setTo(mailDTO.getReceivers().toArray(new String[]{}));
+		simpleMailMessage.setSubject(mailDTO.getSubject());
+		simpleMailMessage.setText(mailDTO.getContent());
+		simpleMailMessage.setFrom(mailDTO.getSender());
+		javaMailSender.send(simpleMailMessage);
+	}
 }

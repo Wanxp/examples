@@ -21,7 +21,7 @@
         <module>springboot-batch-api-test</module>
         <module>spring-data-book</module>
         <module>springboot-job-manager</module>
-        <module>jira-export-to-mail</module>
+<!--        <module>jira-export-to-mail</module>-->
     </modules>
 
 

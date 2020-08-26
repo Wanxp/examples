@@ -15,27 +15,27 @@ import java.util.Arrays;
 @SpringBootTest
 public class JobManagerApplicationTests {
 
-    @Autowired
-    private MailService mailService;
+	@Autowired
+	private MailService mailService;
 
-    @Test
-    public void contextLoads() {
-    }
+	@Test
+	public void contextLoads() {
+	}
 
-    private MailDTO mailDTO;
+	private MailDTO mailDTO;
 
-    @Before
-    public void init() {
-        mailDTO = new MailDTO();
-        mailDTO.setSender("hughwan@walltechsystem.cn");
-        mailDTO.setContent("Hello mail");
-        mailDTO.setSubject("this is a test mail from springboot");
-        mailDTO.setReceivers(Arrays.asList("977741432@qq.com"));
-    }
+	@Before
+	public void init() {
+		mailDTO = new MailDTO();
+		mailDTO.setSender("hughwan@walltechsystem.cn");
+		mailDTO.setContent("Hello mail");
+		mailDTO.setSubject("this is a test mail from springboot");
+		mailDTO.setReceivers(Arrays.asList("977741432@qq.com"));
+	}
 
-    @Test
-    public void testMaiService() {
-        mailService.send(mailDTO);
-    }
+	@Test
+	public void testMaiService() {
+		mailService.send(mailDTO);
+	}
 
 }

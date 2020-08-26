@@ -6,6 +6,6 @@ import java.util.Date;
 
 @Data
 public class JobLog {
-    private Date nextFireTime;
-    private Date lastFireTime;
+	private Date nextFireTime;
+	private Date lastFireTime;
 }

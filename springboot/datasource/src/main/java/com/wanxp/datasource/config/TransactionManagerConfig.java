@@ -11,17 +11,17 @@ import javax.persistence.EntityManagerFactory;
 @EnableTransactionManagement
 public class TransactionManagerConfig {
 
-    @Autowired
-    private EntityManagerFactory masterEntityManagerFactory;
+	@Autowired
+	private EntityManagerFactory masterEntityManagerFactory;
 
 
-    /**
-     * 配置事务管理器
-     */
-    @Bean("masterTransactionManager")
-    public PlatformTransactionManager masterTransactionManager() {
-        JpaTransactionManager jpaTransactionManager =
-                new JpaTransactionManager(masterEntityManagerFactory);
-        return jpaTransactionManager;
-    }
+	/**
+	 * 配置事务管理器
+	 */
+	@Bean("masterTransactionManager")
+	public PlatformTransactionManager masterTransactionManager() {
+		JpaTransactionManager jpaTransactionManager =
+				new JpaTransactionManager(masterEntityManagerFactory);
+		return jpaTransactionManager;
+	}
 }

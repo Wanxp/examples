@@ -8,22 +8,22 @@ import lombok.experimental.Tolerate;
 @Builder
 public class ChannelFileDto {
 
-    private String serviceName;
-    private String serviceCode;
-    private String serviceOption;
-    private String cnName;
-    private String sortCode;
-    private Boolean combine;
-    private String dimension;
-    private String bagWeightLimit;
-    private String declareValue;
-    private String incoterm;
-    private String weight;
-    private String remark;
-    private String mark;
+	private String serviceName;
+	private String serviceCode;
+	private String serviceOption;
+	private String cnName;
+	private String sortCode;
+	private Boolean combine;
+	private String dimension;
+	private String bagWeightLimit;
+	private String declareValue;
+	private String incoterm;
+	private String weight;
+	private String remark;
+	private String mark;
 
 
-    @Tolerate
-    public ChannelFileDto() {
-    }
+	@Tolerate
+	public ChannelFileDto() {
+	}
 }

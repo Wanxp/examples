@@ -13,17 +13,17 @@ import java.util.concurrent.ExecutionException;
 @SpringBootTest
 public class JiraDataManagerTests {
 
-    @Autowired
-    private JiraDataManager jiraDataManager;
+	@Autowired
+	private JiraDataManager jiraDataManager;
 
-    @Autowired
-    private SendWorkStatusExcelJob sendWorkStatusExcelJob;
+	@Autowired
+	private SendWorkStatusExcelJob sendWorkStatusExcelJob;
 
-    @Test
-    public void testGetData() throws ExecutionException, InterruptedException {
+	@Test
+	public void testGetData() throws ExecutionException, InterruptedException {
 //        jiraDataManager.getIssuesByJql("status changed after -1w by currentUser()");
-        sendWorkStatusExcelJob.sendWorkStatusExcelTask();
-    }
+		sendWorkStatusExcelJob.sendWorkStatusExcelTask();
+	}
 
 
 }

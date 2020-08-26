@@ -10,12 +10,12 @@ import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfigurat
  * 排除自动配置Datasource类
  */
 @SpringBootApplication(exclude = {
-        DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class
+		DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class
 })
 public class DataSourceApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(DataSourceApplication.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(DataSourceApplication.class, args);
+	}
 
 }

@@ -10,37 +10,37 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 public interface TaskService {
-    QuartzJob getJob(String jobName, String jobGroup) throws SchedulerException;
+	QuartzJob getJob(String jobName, String jobGroup) throws SchedulerException;
 
-    Scheduler getScheduler();
+	Scheduler getScheduler();
 
-    QuartzJob createJob(String jobName, String jobGroup, Scheduler scheduler, Trigger trigger)
-            throws SchedulerException;
+	QuartzJob createJob(String jobName, String jobGroup, Scheduler scheduler, Trigger trigger)
+			throws SchedulerException;
 
-    List<QuartzJob> getAllJobs() throws SchedulerException;
+	List<QuartzJob> getAllJobs() throws SchedulerException;
 
-    List<QuartzJob> getRunningJob() throws SchedulerException;
+	List<QuartzJob> getRunningJob() throws SchedulerException;
 
-    boolean addJob(QuartzJob job) throws SchedulerException;
+	boolean addJob(QuartzJob job) throws SchedulerException;
 
-    String getJobIdentity(QuartzJob job);
+	String getJobIdentity(QuartzJob job);
 
-    JobDetail getJobDetail(QuartzJob job);
+	JobDetail getJobDetail(QuartzJob job);
 
-    @Transactional
-    boolean pauseJob(QuartzJob job);
+	@Transactional
+	boolean pauseJob(QuartzJob job);
 
-    @Transactional
-    boolean resumeJob(QuartzJob job);
+	@Transactional
+	boolean resumeJob(QuartzJob job);
 
-    @Transactional
-    boolean deleteJob(QuartzJob job);
+	@Transactional
+	boolean deleteJob(QuartzJob job);
 
-    void startJob(QuartzJob scheduleJob) throws SchedulerException;
+	void startJob(QuartzJob scheduleJob) throws SchedulerException;
 
-    @Transactional
-    void updateCronExpression(QuartzJob job) throws SchedulerException;
+	@Transactional
+	void updateCronExpression(QuartzJob job) throws SchedulerException;
 
-    @Transactional
-    void updateStartTime(QuartzJob job) throws SchedulerException;
+	@Transactional
+	void updateStartTime(QuartzJob job) throws SchedulerException;
 }

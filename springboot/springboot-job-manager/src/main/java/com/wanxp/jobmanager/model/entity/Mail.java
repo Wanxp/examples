@@ -9,8 +9,8 @@ import javax.persistence.Table;
 @Entity
 @Table
 public class Mail extends AbstractEntity {
-    private String sender;
-    private String receiver;
-    private String subject;
-    private String content;
+	private String sender;
+	private String receiver;
+	private String subject;
+	private String content;
 }

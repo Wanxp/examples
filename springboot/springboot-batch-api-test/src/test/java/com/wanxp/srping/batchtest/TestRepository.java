@@ -6,12 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class TestRepository extends BaseRepositoryTests {
 
-    //    @MockBean
-    @Autowired
-    private ChannelRepository channelRepository;
+	//    @MockBean
+	@Autowired
+	private ChannelRepository channelRepository;
 
 
-    private int CHANNEL_ID_FOR_TEST = 0;
+	private int CHANNEL_ID_FOR_TEST = 0;
 
 //    @Test
 //    public void channelShouldHaveData() {
@@ -22,8 +22,8 @@ public class TestRepository extends BaseRepositoryTests {
 //        }).when(channelRepository).save(any(Channel.class));
 //    }
 
-    @Test
-    public void testRepository() {
-        channelRepository.findAll();
-    }
+	@Test
+	public void testRepository() {
+		channelRepository.findAll();
+	}
 }

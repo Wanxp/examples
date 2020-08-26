@@ -11,9 +11,9 @@ import java.util.HashMap;
 @Configuration
 public class DataSourceConfig {
 
-    @Bean
-    @Primary
-    public EntityManagerFactoryBuilder entityManagerFactoryBuilder() {
-        return new EntityManagerFactoryBuilder(new HibernateJpaVendorAdapter(), new HashMap<>(), null);
-    }
+	@Bean
+	@Primary
+	public EntityManagerFactoryBuilder entityManagerFactoryBuilder() {
+		return new EntityManagerFactoryBuilder(new HibernateJpaVendorAdapter(), new HashMap<>(), null);
+	}
 }

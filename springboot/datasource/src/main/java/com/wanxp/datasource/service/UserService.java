@@ -1,31 +1,29 @@
 package com.wanxp.datasource.service;
 
-import com.wanxp.datasource.dto.UserDTO;
 import com.wanxp.datasource.entity.User;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Map;
 
 public interface UserService {
-    User addToMaster(User user);
+	User addToMaster(User user);
 
-    User addToSlave(User user);
+	User addToSlave(User user);
 
-    User getFromMaster(Long id);
+	User getFromMaster(Long id);
 
-    User getFromSlave(Long id);
+	User getFromSlave(Long id);
 
-    User getMaxIdUserFromMaster();
+	User getMaxIdUserFromMaster();
 
-    User getMaxIdUserFromSlave();
+	User getMaxIdUserFromSlave();
 
-    User slaveFindAndMasterCreate();
+	User slaveFindAndMasterCreate();
 
 
-    @Transactional
-    Map<String, User> transactionalInMaster();
+	@Transactional
+	Map<String, User> transactionalInMaster();
 
-    @Transactional
-    Map<String, User> transactionalInMasterFaield();
+	@Transactional
+	Map<String, User> transactionalInMasterFaield();
 }

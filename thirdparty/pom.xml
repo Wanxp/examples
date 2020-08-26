@@ -12,7 +12,7 @@
     <artifactId>thirdparty</artifactId>
 
     <modules>
-        <module>jira-plugin</module>
+<!--        <module>jira-plugin</module>-->
         <module>postman</module>
         <module>thymeleaf</module>
     </modules>

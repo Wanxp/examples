@@ -7,10 +7,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="springboot-kafka-demo" />
         <module name="user-service" />
         <module name="algorithm" />
         <module name="spring-cloud-service-restful-example" />
-        <module name="jira-export-to-mail" />
         <module name="thymeleaf" />
         <module name="section-2-repository" />
         <module name="spring-mvc-3-demo" />
@@ -18,6 +18,7 @@
         <module name="javabase" />
         <module name="springboot-security" />
         <module name="base" />
+        <module name="springboot-mybatis" />
         <module name="springboot-job-manager" />
         <module name="springboot-batch-excel" />
         <module name="datasource" />
@@ -25,7 +26,6 @@
         <module name="spring-hibernate-4" />
         <module name="thirdparty" />
         <module name="user-web-register" />
-        <module name="jira-plugin" />
         <module name="springboot-batch-test" />
         <module name="common" />
       </profile>
@@ -45,18 +45,21 @@
       <module name="spring-cloud-service-restful-example" target="1.5" />
       <module name="spring-data-book" target="1.8" />
       <module name="spring-hibernate-4" target="1.7" />
+      <module name="spring-kafka-demo" target="1.5" />
       <module name="spring-mvc-3-demo" target="1.5" />
       <module name="spring-tx-3" target="1.7" />
       <module name="springboot" target="1.5" />
       <module name="springboot-batch-excel" target="1.8" />
       <module name="springboot-batch-test" target="1.8" />
       <module name="springboot-job-manager" target="1.8" />
+      <module name="springboot-kafka-demo" target="1.8" />
+      <module name="springboot-mybatis" target="1.8" />
       <module name="springboot-security" target="1.8" />
       <module name="springcloud" target="1.5" />
       <module name="springcloudservicerestful" target="1.5" />
       <module name="thirdparty" target="1.5" />
       <module name="thymeleaf" target="1.8" />
-      <module name="user-service" target="1.5" />
+      <module name="user-service" target="1.8" />
       <module name="user-web-register" target="1.8" />
     </bytecodeTargetLevel>
   </component>
@@ -70,9 +73,11 @@
       <module name="springboot-batch-excel" options="-parameters" />
       <module name="springboot-batch-test" options="-parameters" />
       <module name="springboot-job-manager" options="-parameters" />
+      <module name="springboot-kafka-demo" options="-parameters" />
+      <module name="springboot-mybatis" options="-parameters" />
       <module name="springboot-security" options="-parameters" />
       <module name="thymeleaf" options="" />
-      <module name="user-service" options="" />
+      <module name="user-service" options="-parameters" />
       <module name="user-web-register" options="-parameters" />
     </option>
   </component>

@@ -10,15 +10,15 @@ import java.util.List;
 @Component
 public class CustomerRepositoryClient {
 
-    private final CustomerRepository repository;
+	private final CustomerRepository repository;
 
-    @Autowired
-    private CustomerRepositoryClient(CustomerRepository repository) {
-        Assert.notNull(repository);
-        this.repository = repository;
-    }
+	@Autowired
+	private CustomerRepositoryClient(CustomerRepository repository) {
+		Assert.notNull(repository);
+		this.repository = repository;
+	}
 
-    public List<Customer> getByLastName() {
-        List<Customer> customerRepository.findByLastName("Tom", Sort.by(Sort.Direction.DESC, "findByLastName"));
-    }
+	public List<Customer> getByLastName() {
+		List<Customer> customerRepository.findByLastName("Tom", Sort.by(Sort.Direction.DESC, "findByLastName"));
+	}
 }

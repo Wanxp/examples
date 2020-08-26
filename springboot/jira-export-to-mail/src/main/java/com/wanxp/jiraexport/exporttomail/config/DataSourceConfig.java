@@ -12,17 +12,17 @@ import javax.sql.DataSource;
 @Configuration
 public class DataSourceConfig {
 
-    @Autowired
-    private DataSourceProperties dataSourceProperties;
+	@Autowired
+	private DataSourceProperties dataSourceProperties;
 
-    @Bean
-    public DataSource dataSource() {
-        return DataSourceBuilder.create().url("jdbc:mysql://127.0.0.1:3306/jira_export_job?setUnicode=true&characterEncoding=utf8")
-                .username("root")
-                .password("0001")
-                .driverClassName("com.mysql.jdbc.Driver")
-                .type(HikariDataSource.class)
-                .build();
-    }
+	@Bean
+	public DataSource dataSource() {
+		return DataSourceBuilder.create().url("jdbc:mysql://127.0.0.1:3306/jira_export_job?setUnicode=true&characterEncoding=utf8")
+				.username("root")
+				.password("0001")
+				.driverClassName("com.mysql.jdbc.Driver")
+				.type(HikariDataSource.class)
+				.build();
+	}
 
 }

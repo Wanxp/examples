@@ -7,5 +7,5 @@ import javax.persistence.Embeddable;
 @Data
 @Embeddable
 public class EmailAddress {
-    private String email;
+	private String email;
 }

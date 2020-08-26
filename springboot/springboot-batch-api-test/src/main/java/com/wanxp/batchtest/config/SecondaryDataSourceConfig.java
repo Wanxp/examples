@@ -12,51 +12,55 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Map;
 
-import static com.wanxp.batchtest.constant.Constant.*;
+import static com.wanxp.batchtest.constant.Constant.SECONDARY_DATASOURCE_NAME;
+import static com.wanxp.batchtest.constant.Constant.SECONDARY_ENTITY_MANAGER_FACTORY_NAME;
+import static com.wanxp.batchtest.constant.Constant.SECONDARY_JPA_ENTITY_PACKAGE_NAME;
+import static com.wanxp.batchtest.constant.Constant.SECONDARY_JPA_PACKAGE_NAME;
+import static com.wanxp.batchtest.constant.Constant.SECONDARY_PERSISTENCE_UNIT_NAME;
+import static com.wanxp.batchtest.constant.Constant.SECONDARY_TRANSACTION_MANAGER_NAME;
 
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-        entityManagerFactoryRef = SECONDARY_ENTITY_MANAGER_FACTORY_NAME,
-        transactionManagerRef = SECONDARY_TRANSACTION_MANAGER_NAME,
-        basePackages = {SECONDARY_JPA_PACKAGE_NAME}
+		entityManagerFactoryRef = SECONDARY_ENTITY_MANAGER_FACTORY_NAME,
+		transactionManagerRef = SECONDARY_TRANSACTION_MANAGER_NAME,
+		basePackages = {SECONDARY_JPA_PACKAGE_NAME}
 
 )
 public class SecondaryDataSourceConfig {
-    @Autowired
-    private JpaProperties jpaProperties;
+	@Autowired
+	private JpaProperties jpaProperties;
 
-    @Autowired
-    @Qualifier(SECONDARY_DATASOURCE_NAME)
-    private DataSource secondaryDataSource;
+	@Autowired
+	@Qualifier(SECONDARY_DATASOURCE_NAME)
+	private DataSource secondaryDataSource;
 
 //    @Bean(name = SECONDARY_ENTITY_MANAGER_NAME)
 //    public EntityManager entityManager(EntityManagerFactoryBuilder entityManagerFactoryBuilder) {
 //        return secondaryEntityManagerFactory(entityManagerFactoryBuilder).getObject().createEntityManager();
 //    }
 
-    @Bean(name = SECONDARY_ENTITY_MANAGER_FACTORY_NAME)
-    public LocalContainerEntityManagerFactoryBean secondaryEntityManagerFactory(EntityManagerFactoryBuilder entityManagerFactoryBuilder) {
-        return entityManagerFactoryBuilder
-                .dataSource(secondaryDataSource)
-                .properties(getVendorProperties())
-                .packages(SECONDARY_JPA_ENTITY_PACKAGE_NAME)
-                .persistenceUnit(SECONDARY_PERSISTENCE_UNIT_NAME)
-                .build();
-    }
+	@Bean(name = SECONDARY_ENTITY_MANAGER_FACTORY_NAME)
+	public LocalContainerEntityManagerFactoryBean secondaryEntityManagerFactory(EntityManagerFactoryBuilder entityManagerFactoryBuilder) {
+		return entityManagerFactoryBuilder
+				.dataSource(secondaryDataSource)
+				.properties(getVendorProperties())
+				.packages(SECONDARY_JPA_ENTITY_PACKAGE_NAME)
+				.persistenceUnit(SECONDARY_PERSISTENCE_UNIT_NAME)
+				.build();
+	}
 
-    private Map getVendorProperties() {
-        return jpaProperties.getProperties();
-    }
+	private Map getVendorProperties() {
+		return jpaProperties.getProperties();
+	}
 
-    @Bean(name = SECONDARY_TRANSACTION_MANAGER_NAME)
-    public PlatformTransactionManager transactionManagerPrimary(EntityManagerFactory entityManagerFactory) {
-        return new JpaTransactionManager(entityManagerFactory);
-    }
+	@Bean(name = SECONDARY_TRANSACTION_MANAGER_NAME)
+	public PlatformTransactionManager transactionManagerPrimary(EntityManagerFactory entityManagerFactory) {
+		return new JpaTransactionManager(entityManagerFactory);
+	}
 
 }

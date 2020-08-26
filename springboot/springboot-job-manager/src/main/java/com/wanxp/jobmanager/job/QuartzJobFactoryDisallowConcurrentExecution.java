@@ -14,10 +14,10 @@ import org.quartz.JobExecutionException;
 @DisallowConcurrentExecution
 @Slf4j
 public class QuartzJobFactoryDisallowConcurrentExecution implements Job {
-    @Override
-    public void execute(JobExecutionContext context) throws JobExecutionException {
-        // 内容与 QuartzJobFactory 里的 execute 方法里的一致
-    }
+	@Override
+	public void execute(JobExecutionContext context) throws JobExecutionException {
+		// 内容与 QuartzJobFactory 里的 execute 方法里的一致
+	}
 
 }
 

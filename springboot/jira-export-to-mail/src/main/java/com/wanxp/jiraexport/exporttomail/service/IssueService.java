@@ -9,5 +9,5 @@ import java.util.List;
  * issue服务类 接口
  */
 public interface IssueService {
-    List<Issue> getIssuesByJql(String jql);
+	List<Issue> getIssuesByJql(String jql);
 }

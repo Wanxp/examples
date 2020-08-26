@@ -9,8 +9,8 @@ import org.springframework.data.redis.repository.configuration.EnableRedisReposi
 @Configuration
 @EnableRedisRepositories
 public class RedisConfig {
-    @Bean
-    public LettuceConnectionFactory redisConnectionFactory() {
-        return new LettuceConnectionFactory(new RedisStandaloneConfiguration("server", 6379));
-    }
+	@Bean
+	public LettuceConnectionFactory redisConnectionFactory() {
+		return new LettuceConnectionFactory(new RedisStandaloneConfiguration("server", 6379));
+	}
 }

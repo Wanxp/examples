@@ -7,9 +7,9 @@ import java.util.Map;
 
 @Data
 public class MailDTO {
-    private String sender;
-    private List<String> receivers;
-    private String subject;
-    private String content;
-    private Map<String, Object> attachment;
+	private String sender;
+	private List<String> receivers;
+	private String subject;
+	private String content;
+	private Map<String, Object> attachment;
 }
